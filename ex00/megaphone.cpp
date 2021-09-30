@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 22:05:46 by miki              #+#    #+#             */
-/*   Updated: 2021/09/27 00:06:18 by miki             ###   ########.fr       */
+/*   Updated: 2021/09/30 17:01:55 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ std::string ft_str_toupper(std::string str)
 int main(int argc, char **argv)
 {
 	if (argc == 1)
-		std::cout << "No argument" << std::endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 	else
 	{
 		for (size_t i = 1; i < (size_t)argc; i++)
