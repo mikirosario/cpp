@@ -3,22 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:18:57 by mrosario          #+#    #+#             */
-/*   Updated: 2021/09/30 21:37:10 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 06:58:25 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <ios>
 #include <limits>
+#include <cstring>
+#include <fstream>
+
+/*
+** Just a bit of fun. ;) At least opening files is a lot less tedious on C++!
+*/
+
+void	print_intro(void)
+{
+	std::string		linebuff;
+	std::ifstream	intro;
+
+	intro.open("intro.txt");
+	if (intro.is_open())
+	{
+		while (std::getline(intro, linebuff))
+			std::cout << linebuff << std::endl;
+		intro.close();
+	}
+}
 
 /*
 ** We zero the character buffer. Then we prompt the user to state their command.
 ** We declare a character array of eight bytes, because the longest command will
 ** not be longer than that ('SEARCH') and use the getline member function of the
 ** istream instance cin to retrieve no more than BUFSIZE characters from stdin.
+**
+** The getline member function works with cstrings, so I also load the cstring
+** lib to get bzero for it.
 **
 ** If getline extracts no characters OR no delimiting character ('\ n' newline
 ** in this case) is found after BUFSIZE-1 characters are read, it will set the
@@ -49,31 +71,32 @@ int	inputloop (void)
 {
 	char			buff[8];
 	int const		BUFSIZE = 8;
-	std::string		strbuff;
+	std::string		linebuff;
 
 	while (1)
 	{
 		bzero(buff, BUFSIZE);
 		std::cout << "State your command, master: ";
-		std::cin.getline(buff,BUFSIZE);
+		std::cin.getline(buff, BUFSIZE);
 		if (std::cin.fail() && std::cin.gcount() == BUFSIZE-1)
 		{
 			buff[BUFSIZE-1] = '\0';
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
-		strbuff = buff;
-		if (!strbuff.compare("EXIT"))
+		linebuff = buff;
+		if (!linebuff.compare("EXIT"))
 			return (0);
-		else if (!strbuff.compare("ADD"))
+		else if (!linebuff.compare("ADD"))
 			std::cout << "ADDED" << std::endl;
-		else if (!strbuff.compare("SEARCH"))
+		else if (!linebuff.compare("SEARCH"))
 			std::cout << "SEARCH" << std::endl;
 	}
 }
 
 int main (void)
 {
+	print_intro();
 	inputloop();
 
 	return (0);
