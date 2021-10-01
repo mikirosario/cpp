@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:18:57 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 13:13:47 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 18:29:55 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <limits>
 #include <cstring>
 #include <fstream>
+#include <iomanip>
 #include "phonebook.hpp"
 #include "Contact.class.hpp"
 #include "ANSI_colors.hpp"
@@ -89,17 +90,74 @@ void	print_intro(void)
 
 /*
 ** This function handles contact adding, and will be called when the user inputs
-** the ADD command. We use the Contact class.
+** the ADD command. We use the Contact class, which has two string arrays, one
+** variable array called input_data and another static const array called
+** input_msg, each with five string instances. The data strings are for storing
+** user input, and the message strings are for storing user prompts associated
+** with each input and stored as literal string constants defined in the
+** Contact.class.cpp define file. They are static since they are class-specific
+** and not member-specific, so their memory space should be shared by all
+** classes, and constants since they should never be changed.
 **
-** 
+** We receive the address of an array of 8 Contact instances as an argument.
+**
+** We declare a static int i, which is initialized to 0 and used to iterate
+** through the different Contact instances in the array. Every time add_contact
+** is called, it will increment by 1.
+**
+** We declare a local int x, which is used to iterate through the different
+** string instances in the input_data and input_msg arrays. These arrays
+** represent the input fields of a contact and are in the following order:
+**
+** First name
+** Last name
+** Nickname
+** Phone number
+** Darkest secret
+**
+** So x will move from one field to another within a contact, and i will move
+** from one contact to another within the phonebook.
+**
+** We have a cstring named buff used as a buffer, of size FIELD_BUFF_SIZE.
+**
+** If we are have gone through all 8 contacts (i == 8), then we want to loop
+** back to the oldest contact, which will be the contact at phonebook[0], so we
+** reset i to 0 if i is greater than 7.
+**
+** When we enter the add_contact function, we have a WHILE loop that loops until
+** we have reached the fifth data item. 
+**
+** //THE WHILE LOOP\\
+**
+** - The bzero function is used to zero the buffer at the start of every loop.
+** - Then we display the input message associated with the current field (as
+** defined by the x variable).
+** - Then we use cin.getline and our buffer to wait for user input and retrieve
+** it.
+** - The cin.getline method will retrieve only enough characters to fill the
+** buffer size passed as an argument (in bytes). If the user inputs more than
+** that, cin.getline will fill the buffer up to the limit (FIELD_BUFF_SIZE-1,
+** because a cstring must be null terminated) and throw an error.
+** - Then we use the cin_buff_overflow function to detect and handle a buffer
+** overflow error. We will discard their input, so we will NOT increment x in
+** this case, and instead prompt the user again for new input for the field.
+** - If cin_buff_overflow detects that the user has overflowed the buffer, we
+** will warn them that they need to input fewer characters on the console before
+** prompting them for input again.
+** - If the input was valid, we will copy the buff string to the corresponding
+** input_data instance (as defined by x) within the current contact (as defined
+** by i) and then increment x to go to the next field in the contact.
+**
+** When all five fields have been filled with valid data, we exit the while and
+** increment i to go to the next contact and return from the function.
 */
 
-int		add_contact(Contact *contacts)
+void		add_contact(Contact *phonebook)
 {
 	static int	i = 0;
 	int			x = 0;
 	char		buff[FIELD_BUFF_SIZE];
-	std::string	linebuff;
+	//std::string	linebuff;
 
 	//provisional, probarlo cuando search esté funcionando
 	if (i > 7)
@@ -107,18 +165,49 @@ int		add_contact(Contact *contacts)
 	while (x < 5)
 	{
 		bzero(buff, FIELD_BUFF_SIZE);
-		std::cout << Contact::input_msg[x];
+		std::cout << Contact::input_msg[x] << ": ";
 		std::cin.getline(buff, FIELD_BUFF_SIZE);
 		if (cin_buff_overflow(FIELD_BUFF_SIZE))
 			std::cout << RED << "Too many characters. Use " << FIELD_BUFF_SIZE-1 \
 			<< " characters or less." << RESET << std::endl;
 		else
-			contacts[i].input_data[x++] = buff;
+			phonebook[i].input_data[x++] = buff;
 	}
 	for (int index = 0; index < 5; index++)
-		std::cout << GRN << Contact::input_msg[index] << contacts[i].input_data[index] << RESET << std::endl;
+		std::cout << GRN << Contact::input_msg[index] << ": " << phonebook[i].input_data[index] << RESET << std::endl;
 	i++;
-	return (1);
+	if (Contact::indexed < 8)
+		Contact::indexed++;
+	return ;
+}
+
+/*
+** This function handles contact searching and will be called when the user
+** inputs the SEARCH command.
+*/
+
+void		search_contact(Contact *phonebook)
+{
+	//print header
+	std::cout << "|" << std::setw(10) << "Index" << "|";
+	for (size_t i = 0; i < 3; i++)
+		std::cout << std::setw(10) << Contact::input_msg[i] << "|";
+	std::cout << std::endl;
+	//print contacts
+	for (size_t index = 0; index < Contact::indexed; index++)
+	{
+		std::cout << "|" << std::setw(10) << index+1 << "|";
+		for (size_t field = 0; field < 3; field++)
+		{
+			if (phonebook[index].input_data[field].length() <= 10)
+				std::cout << std::setw(10) << phonebook[index].input_data[field];
+			else
+				std::cout << phonebook[index].input_data[field].substr(0, 9) << ".";
+			std::cout << "|";
+		}
+		std::cout << std::endl;
+	}
+	return ;
 }
 
 /*
@@ -134,11 +223,12 @@ int		add_contact(Contact *contacts)
 ** ignore it and prompt the user again.
 */
 
-int	inputloop (Contact *contacts)
+int	inputloop (Contact *phonebook)
 {
 	char			buff[COMMAND_BUFF_SIZE];
 	std::string		linebuff;
 
+	//std::cin.setf(std::cin.uppercase);
 	while (1)
 	{
 		bzero(buff, COMMAND_BUFF_SIZE);
@@ -155,18 +245,20 @@ int	inputloop (Contact *contacts)
 		if (!linebuff.compare("EXIT"))
 			return (0);
 		else if (!linebuff.compare("ADD"))
-			add_contact(contacts);
+			add_contact(phonebook);
 			//std::cout << "ADDED" << std::endl;
 		else if (!linebuff.compare("SEARCH"))
-			std::cout << "SEARCH" << std::endl;
+			search_contact(phonebook);
+			//std::cout << "SEARCH" << std::endl;
 	}
 }
 
 int main (void)
 {
-	Contact	contacts[8];
+	Contact	phonebook[8];
+
 	print_intro();
-	inputloop(contacts);
+	inputloop(phonebook);
 
 	return (0);
 }

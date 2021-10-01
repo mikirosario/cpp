@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 09:25:17 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 12:24:10 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 19:24:29 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ class	Contact {
 	// std::string					darkest_secret;
 	std::string					input_data[5];
 	static const std::string	input_msg[5];
-
-	
+	static size_t				indexed;
 
 	//me vale con los que vienen por defecto :p
 	//Contact(void);

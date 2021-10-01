@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:21:11 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 10:52:05 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 17:51:01 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@
 	
 // }
 
-const std::string Contact::input_msg[] = {"First name: ", "Last name: ", "Nickname: ", "Phone number: ", "Darkest secret: "};
+const std::string Contact::input_msg[] = {"First name", "Last name", "Nickname", "Phone number", "Darkest secret"};
+size_t Contact::indexed = 0;
