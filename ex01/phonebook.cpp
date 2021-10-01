@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:18:57 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 12:41:50 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 13:13:47 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ void	print_intro(void)
 	}
 }
 
+/*
+** This function handles contact adding, and will be called when the user inputs
+** the ADD command. We use the Contact class.
+**
+** 
+*/
+
 int		add_contact(Contact *contacts)
 {
 	static int	i = 0;
@@ -94,8 +101,9 @@ int		add_contact(Contact *contacts)
 	char		buff[FIELD_BUFF_SIZE];
 	std::string	linebuff;
 
+	//provisional, probarlo cuando search esté funcionando
 	if (i > 7)
-		return (0);
+		i = 0;
 	while (x < 5)
 	{
 		bzero(buff, FIELD_BUFF_SIZE);
