@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:18:57 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 06:58:25 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/01 10:57:54 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <limits>
 #include <cstring>
 #include <fstream>
+#include "Contact.class.hpp"
+#include "ANSI_colors.hpp"
 
 /*
 ** Just a bit of fun. ;) At least opening files is a lot less tedious on C++!
@@ -31,6 +33,38 @@ void	print_intro(void)
 			std::cout << linebuff << std::endl;
 		intro.close();
 	}
+}
+
+int		add_contact(Contact *contacts)
+{
+	static int	i = 0;
+	int			x = 0;
+	char		buff[13];
+	std::string	linebuff;
+
+	if (i > 7)
+		return (0);
+	while (x < 5)
+	{
+		bzero(buff, 13);
+		std::cout << Contact::input_msg[x];
+		std::cin.getline(buff, FIELD_SIZE_MAX);
+		//buffer overflow handling
+		if (std::cin.fail() && std::cin.gcount() == FIELD_SIZE_MAX-1)
+		{
+			buff[FIELD_SIZE_MAX-1] = '\0';
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << RED << "Too many characters. Use " << FIELD_SIZE_MAX-1 \
+			<< " characters or less." << RESET << std::endl;
+		}
+		else
+			contacts[i].input_data[x++] = buff;
+	}
+	for (int index = 0; index < 5; index++)
+		std::cout << GRN << Contact::input_msg[index] << contacts[i].input_data[index] << RESET << std::endl;
+	i++;
+	return (1);
 }
 
 /*
@@ -67,7 +101,7 @@ void	print_intro(void)
 ** ignore it and prompt the user again.
 */
 
-int	inputloop (void)
+int	inputloop (Contact *contacts)
 {
 	char			buff[8];
 	int const		BUFSIZE = 8;
@@ -88,7 +122,8 @@ int	inputloop (void)
 		if (!linebuff.compare("EXIT"))
 			return (0);
 		else if (!linebuff.compare("ADD"))
-			std::cout << "ADDED" << std::endl;
+			add_contact(contacts);
+			//std::cout << "ADDED" << std::endl;
 		else if (!linebuff.compare("SEARCH"))
 			std::cout << "SEARCH" << std::endl;
 	}
@@ -96,8 +131,9 @@ int	inputloop (void)
 
 int main (void)
 {
+	Contact	contacts[8];
 	print_intro();
-	inputloop();
+	inputloop(contacts);
 
 	return (0);
 }
