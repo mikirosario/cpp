@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 09:25:17 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 10:56:28 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 12:24:10 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define CONTACT_CLASS_H
 
 #include <iostream>
-
-# define FIELD_SIZE_MAX 13
 
 class	Contact {
 	public:
