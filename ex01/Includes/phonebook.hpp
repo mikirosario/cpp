@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 12:20:53 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 18:35:35 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 21:04:53 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 
 #define COMMAND_BUFF_SIZE 8
 #define FIELD_BUFF_SIZE 256
+#define FIELD_NUM 5
+#define CONTACT_MAX 8
 
 #endif

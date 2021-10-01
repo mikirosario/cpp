@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:18:57 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/01 18:29:55 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/01 21:35:42 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,9 +160,9 @@ void		add_contact(Contact *phonebook)
 	//std::string	linebuff;
 
 	//provisional, probarlo cuando search esté funcionando
-	if (i > 7)
+	if (i > CONTACT_MAX-1)
 		i = 0;
-	while (x < 5)
+	while (x < FIELD_NUM)
 	{
 		bzero(buff, FIELD_BUFF_SIZE);
 		std::cout << Contact::input_msg[x] << ": ";
@@ -173,12 +173,20 @@ void		add_contact(Contact *phonebook)
 		else
 			phonebook[i].input_data[x++] = buff;
 	}
-	for (int index = 0; index < 5; index++)
-		std::cout << GRN << Contact::input_msg[index] << ": " << phonebook[i].input_data[index] << RESET << std::endl;
+	for (int field = Contact::First_Name; field <= Contact::Darkest_Secret; field++)
+		std::cout << GRN << Contact::input_msg[field] << ": " << phonebook[i].input_data[field] << RESET << std::endl;
 	i++;
-	if (Contact::indexed < 8)
+	if (Contact::indexed < CONTACT_MAX)
 		Contact::indexed++;
 	return ;
+}
+
+bool	isNumber(char *str)
+{
+	for (size_t i = 0; str[i]; i++)
+		if (std::isdigit(str[i]) == 0)
+			return (false);
+	return (true);
 }
 
 /*
@@ -188,16 +196,17 @@ void		add_contact(Contact *phonebook)
 
 void		search_contact(Contact *phonebook)
 {
+	char	buff[Contact::index_buf_size];
 	//print header
 	std::cout << "|" << std::setw(10) << "Index" << "|";
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = Contact::First_Name; i <= Contact::Nickname; i++)
 		std::cout << std::setw(10) << Contact::input_msg[i] << "|";
 	std::cout << std::endl;
 	//print contacts
 	for (size_t index = 0; index < Contact::indexed; index++)
 	{
 		std::cout << "|" << std::setw(10) << index+1 << "|";
-		for (size_t field = 0; field < 3; field++)
+		for (int field = Contact::First_Name; field <= Contact::Nickname; field++)
 		{
 			if (phonebook[index].input_data[field].length() <= 10)
 				std::cout << std::setw(10) << phonebook[index].input_data[field];
@@ -207,6 +216,25 @@ void		search_contact(Contact *phonebook)
 		}
 		std::cout << std::endl;
 	}
+
+	int	contact;
+	while (1)
+	{
+		bzero(buff, Contact::index_buf_size);
+		std::cout << "Enter an index #: ";
+		std::cin.getline(buff, Contact::index_buf_size);
+		if (cin_buff_overflow(Contact::index_buf_size))
+			std::cout << RED << "Too many characters. Use " << Contact::index_buf_size-1 \
+			<< " characters or less." << RESET << std::endl;
+		else if (isNumber(buff) == false)
+			std::cout << RED << "Not a number" << RESET << std::endl;
+		else if ((contact = std::atoi(buff)) < 1 || (size_t)contact > Contact::indexed)
+			std::cout << RED << "Index does not exist " << RESET << std::endl;
+		else
+			break ;
+	}
+	for (int field = Contact::First_Name; field <= Contact::Darkest_Secret; field++)
+			std::cout << GRN << Contact::input_msg[field] << ": " << phonebook[contact-1].input_data[field] << RESET << std::endl;
 	return ;
 }
 
@@ -255,7 +283,7 @@ int	inputloop (Contact *phonebook)
 
 int main (void)
 {
-	Contact	phonebook[8];
+	Contact	phonebook[CONTACT_MAX];
 
 	print_intro();
 	inputloop(phonebook);
