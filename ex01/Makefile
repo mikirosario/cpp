@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/02 21:54:23 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/02 22:30:48 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCFILES =	$(SRCDIR)/phonebook.cpp $(SRCDIR)/Contact.class.cpp \
 
 OBJS = $(SRCFILES:.cpp=.o)
 
-INCLUDES = -I.
+INCLUDES = -I $(SRCDIR)
 
 FLAGS = -Wall -Werror -Wextra
 

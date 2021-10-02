@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:23:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 21:30:17 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 22:35:10 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	Phonebook::addContact(void)
 
 	if (index > CONTACT_MAX-1)
 		index = 0;
-	while (field < FIELD_NUM)
+	while (field < TOTAL_FIELD_NUM)
 	{
 		bzero(buff, FIELD_BUFF_SIZE);
 		Contact::showFieldPrompt(field);
@@ -251,7 +251,7 @@ int		Phonebook::prompt_for_contact_index(void)
 
 void	Phonebook::print_contact_details(int index)
 {
-	for (int field = Contact::First_Name; field < FIELD_NUM; field++)
+	for (int field = Contact::First_Name; field < TOTAL_FIELD_NUM; field++)
 	{
 			std::cout << GRN;
 			Contact::showFieldPrompt(field);

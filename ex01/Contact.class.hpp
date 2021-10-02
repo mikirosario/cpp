@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 09:25:17 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 20:46:47 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 22:43:09 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,8 @@ class	Contact {
 		};
 
 	private:
-		std::string					input_data[FIELD_NUM];
-		static const std::string	input_msg[FIELD_NUM];
-
-
-	//me vale con los que vienen por defecto :p
-	//Contact(void);
-	// ~Contact(void);
+		std::string					input_data[TOTAL_FIELD_NUM];
+		static const std::string	input_msg[TOTAL_FIELD_NUM];
 };
 
 #endif

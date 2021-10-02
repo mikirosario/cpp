@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:21:11 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 20:48:37 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 22:35:10 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 void	Contact::showFieldData(int field)
 {
-	if (field < 0 || field > FIELD_NUM-1)
+	if (field < 0 || field > TOTAL_FIELD_NUM-1)
 		return ;
 	std::cout << this->input_data[field];
 	return ;
@@ -45,7 +45,7 @@ void	Contact::showFieldData(int field)
 
 void	Contact::showFieldData(int field, size_t len)
 {
-	if (field < 0 || field > FIELD_NUM-1)
+	if (field < 0 || field > TOTAL_FIELD_NUM-1)
 		return ;
 	std::cout << this->input_data[field].substr(0, len);
 	return ;
@@ -65,7 +65,7 @@ void	Contact::showFieldData(int field, size_t len)
 
 void Contact::showFieldName(int field)
 {
-	if (field < 0 || field > FIELD_NUM-1)
+	if (field < 0 || field > TOTAL_FIELD_NUM-1)
 		return ;
 	std::cout << Contact::input_msg[field];
 	return ;
@@ -78,7 +78,7 @@ void Contact::showFieldName(int field)
 
 void Contact::showFieldPrompt(int field)
 {
-	if (field < 0 || field > FIELD_NUM-1)
+	if (field < 0 || field > TOTAL_FIELD_NUM-1)
 		return ;
 	std::cout << Contact::input_msg[field] << ": ";
 	return ;
@@ -94,7 +94,7 @@ void Contact::showFieldPrompt(int field)
 
 bool Contact::setFieldData(int field, char *data)
 {
-	if (field < 0 || field > FIELD_NUM-1)
+	if (field < 0 || field > TOTAL_FIELD_NUM-1)
 		return (false);
 	this->input_data[field] = data;
 	return (true);
@@ -107,7 +107,7 @@ bool Contact::setFieldData(int field, char *data)
 
 size_t	Contact::getFieldDataLength(int field)
 {
-	if (field < 0 || field > FIELD_NUM-1)
+	if (field < 0 || field > TOTAL_FIELD_NUM-1)
 		return (0);
 	return (this->input_data[field].length());
 }
