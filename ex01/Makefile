@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/02 17:37:23 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/02 21:54:23 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,28 +25,23 @@ SRCFILES =	$(SRCDIR)/phonebook.cpp $(SRCDIR)/Contact.class.cpp \
 
 OBJS = $(SRCFILES:.cpp=.o)
 
-INCLUDES = -I ./Includes
+INCLUDES = -I.
 
 FLAGS = -Wall -Werror -Wextra
 
-$(NAME): $(OBJS)
-	@printf "$(YEL)Compiling program...$(RST)"
-	@clang++ $(FLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
-	@printf "$(DEL)$(GRN)Compiled program\n$(RST)"
-
-$(OBJS):
-	@clang++ $(FLAGS) $(INCLUDES) $(SRCFILES) -c
-	
 all: $(NAME)
+
+$(NAME): $(OBJS)
+	clang++ $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS)
 
 clean:
 	@printf "$(YEL)Deleting object files...$(RST)"
-	@rm $(OBJS) 2>/dev/null
+	@rm $(OBJS) 2>/dev/null || true
 	@printf "$(DEL)$(GRN)Deleted object files\n$(RST)"
 
 fclean: clean
 	@printf "$(YEL)Deleting program...$(RST)"
-	@rm $(NAME) 2>/dev/null
+	@rm $(NAME) 2>/dev/null || true
 	@printf "$(DEL)$(GRN)Deleted program\n$(RST)"
 
 re: fclean all

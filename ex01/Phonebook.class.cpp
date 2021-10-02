@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:23:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 18:50:36 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 21:30:17 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,19 @@ Phonebook::Phonebook(void) : indexed(0)
 {
 }
 
-bool	isNumber(char *str)
+static size_t	calculate_index_buf_size(size_t contact_max)
+{
+	size_t	index_buf_size = 0;
+	
+	while (contact_max > 0)
+	{
+		index_buf_size++;
+		contact_max /= 10;
+	}
+	return (index_buf_size+1);
+}
+
+static bool	isNumber(char *str)
 {
 	for (size_t i = 0; str[i]; i++)
 		if (std::isdigit(str[i]) == 0)
@@ -124,9 +136,8 @@ void	Phonebook::addContact(void)
 	return ;
 }
 
-void	Phonebook::searchContact(void)
+static void	print_header(void)
 {
-	char	buff[Contact::index_buf_size];
 	//print header
 	std::cout << "|" << std::setw(10) << "Index" << "|";
 	for (size_t field = Contact::First_Name; field <= Contact::Nickname; field++)
@@ -136,20 +147,42 @@ void	Phonebook::searchContact(void)
 		std::cout << "|";
 	}
 	std::cout << std::endl;
-	
+	return ;
+}
+
+/*
+** This function prints a list of contacts stored in the Phonebook object.
+**
+** First we check the indexed variable to determine whether any contacts have
+** been indexed. If no contacts have been indexed, we inform the user and return
+** false. Otherwise, we run a for loop to retrieve some data for every indexed
+** contact within this Phonebook instance.
+**
+** For each contact, first we print its index position number + 1 (so, Contact 0
+** will be displayed to the user as Contact 1, etc.). Then we display the data
+** associated with each field from First Name until Nickname (the first 3
+** fields). If any of this data is at least 10 characters long or less, we pad
+** it on the left with spaces using the std::setw method so that it occupies a
+** column 10 characters wide. If the data is longer than 10 characters, we print
+** only the first 9 characters followed by a '.'. Columns are enclosed by '|'.
+**
+** After all contacts have been listed, we return true.
+*/
+
+bool	Phonebook::print_contact_list(void)
+{
 	if (this->indexed < 1)
 	{
 		std::cout << RED << "You are friendless" << RESET << std::endl;
-		return ;
+		return (false);
 	}
-	//print contacts
-	for (size_t index = 0; index < this->getIndexed(); index++)
+	for (size_t index = 0; index < this->indexed; index++)
 	{
 		std::cout << "|" << std::setw(10) << index+1 << "|";
 		for (int field = Contact::First_Name; field <= Contact::Nickname; field++)
 		{
 			if (this->contact[index].getFieldDataLength(field) <= 10)
-			{ //len sin width, width sin len :p
+			{
 				std::cout << std::setw(10);
 				this->contact[index].showFieldData(field);
 			}
@@ -162,31 +195,87 @@ void	Phonebook::searchContact(void)
 		}
 		std::cout << std::endl;
 	}
-	//prompt for contact index
-	int	contact;
+	return (true);
+}
+
+/*
+** This function will prompt the user to provide a contact index for which to
+** display details and retrieve the index provided by the user.
+**
+** The maximum number of characters that a user may enter here is equal to the
+** number of digits in the CONTACT_MAX constant, which is calculated upon class
+** initialization and saved as the index_buf_size constant. If the user inputs
+** more characters than this, a message is displayed informing them of the
+** maximum character limit and they are prompted again. The cin_buff_overflow
+** function is used to handle the getline fail bit and remaining characters in
+** the cin buffer.
+**
+** Otherwise, if any of the characters are not numbers, the user is informed and
+** prompted again.
+**
+** Otherwise, the number is converted from alphanumeric format to an integer. If
+** the number is negative or greater than the number of indexed contacts. the
+** user is informed that it does not exist and is prompted again.
+**
+** Otherwise, the we leave the while and return the index number.
+*/
+
+int		Phonebook::prompt_for_contact_index(void)
+{
+	char	buff[Phonebook::index_buf_size];
+	int	index;
+
 	while (1)
 	{
-		bzero(buff, Contact::index_buf_size);
+		bzero(buff, Phonebook::index_buf_size);
 		std::cout << "Enter an index #: ";
-		std::cin.getline(buff, Contact::index_buf_size);
-		if (cin_buff_overflow(Contact::index_buf_size))
-			std::cout << RED << "Too many characters. Use " << Contact::index_buf_size-1 \
+		std::cin.getline(buff, Phonebook::index_buf_size);
+		if (cin_buff_overflow(Phonebook::index_buf_size))
+			std::cout << RED << "Too many characters. Use " << Phonebook::index_buf_size-1 \
 			<< " characters or less." << RESET << std::endl;
 		else if (isNumber(buff) == false)
 			std::cout << RED << "Not a number" << RESET << std::endl;
-		else if ((contact = std::atoi(buff)) < 1 || (size_t)contact > this->getIndexed())
+		else if ((index = std::atoi(buff)) < 1 || (size_t)index > this->indexed)
 			std::cout << RED << "Index does not exist " << RESET << std::endl;
 		else
 			break ;
 	}
-	//print contact
-	for (int field = Contact::First_Name; field <= Contact::Darkest_Secret; field++)
+	return (index);
+}
+
+/*
+** This function prints the contact details for the contact at the position
+** 'index' within the Phonebook's field data array, one field at a time line by
+** line, preceded by the field names.
+*/
+
+void	Phonebook::print_contact_details(int index)
+{
+	for (int field = Contact::First_Name; field < FIELD_NUM; field++)
 	{
 			std::cout << GRN;
 			Contact::showFieldPrompt(field);
-			this->contact[contact-1].showFieldData(field);
+			this->contact[index-1].showFieldData(field);
 			std::cout << RESET << std::endl;
 	}
+}
+
+/*
+** This function displays a list of contacts in the Phonebook to the user and
+** prompts the user for a contact index number. It then provides the user with
+** the contact details for the contact at the specified index and returns to the
+** command prompt.
+**
+** If no contacts exist in the Phonebook, the user is informed and returned to
+** the command prompt.
+*/
+
+void	Phonebook::searchContact(void)
+{
+
+	print_header();
+	if (this->print_contact_list())
+		this->print_contact_details(this->prompt_for_contact_index());
 	return ;
 }
 
@@ -201,3 +290,5 @@ size_t	Phonebook::getIndexed(void)
 {
 	return (this->indexed);
 }
+
+const size_t Phonebook::index_buf_size = calculate_index_buf_size(CONTACT_MAX);

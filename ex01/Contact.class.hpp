@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 09:25:17 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 18:42:20 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:46:47 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 class	Contact {
 	public:
-		static const size_t			index_buf_size;
 		void						showFieldData(int field);
 		void						showFieldData(int field, size_t len);
 		static void					showFieldName(int field);

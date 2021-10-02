@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:15:37 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 18:41:13 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 21:10:20 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ class	Phonebook {
 		void	changeIndexed(int n);
 	
 	private:
-		Contact		contact[CONTACT_MAX];
-		size_t		indexed;
+		Contact				contact[CONTACT_MAX];
+		size_t				indexed;
+		bool				print_contact_list(void);
+		int					prompt_for_contact_index(void);
+		void				print_contact_details(int index);
+		static const size_t	index_buf_size;
 };
 
 int		cin_buff_overflow(int bufsize);

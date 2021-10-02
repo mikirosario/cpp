@@ -6,29 +6,13 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:21:11 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 18:42:04 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:48:37 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iomanip>
 #include "Contact.class.hpp"
-
-// Contact::Contact(void) : first_name(NULL), last_name(NULL), nickname(NULL),
-// phone_number(NULL), darkest_secret(NULL), input_msg[0]("First Name: ") {
-	
-// }
-size_t	calculate_index_buf_size(size_t contact_max)
-{
-	size_t	index_buf_size = 0;
-	
-	while (contact_max > 0)
-	{
-		index_buf_size++;
-		contact_max /= 10;
-	}
-	return (index_buf_size+1);
-}
 
 /*
 ** This member function displays on the terminal the data stored for the field
@@ -129,4 +113,3 @@ size_t	Contact::getFieldDataLength(int field)
 }
 
 const std::string Contact::input_msg[] = {"First name", "Last name", "Nickname", "Phone number", "Darkest secret"};
-const size_t Contact::index_buf_size = calculate_index_buf_size(CONTACT_MAX);
