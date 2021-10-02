@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/01 19:20:03 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/02 17:37:23 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ YEL = \e[1;33m
 DEL = \e[2K\r
 RST = \e[0m
 
-SRCFILES = $(SRCDIR)/Contact.class.cpp $(SRCDIR)/phonebook.cpp
+SRCFILES =	$(SRCDIR)/phonebook.cpp $(SRCDIR)/Contact.class.cpp \
+			$(SRCDIR)/Phonebook.class.cpp $(SRCDIR)/utils.cpp 
 
 OBJS = $(SRCFILES:.cpp=.o)
 
