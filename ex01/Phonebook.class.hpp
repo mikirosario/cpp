@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:15:37 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 22:42:48 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/03 15:32:26 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,16 @@ class	Phonebook {
 		bool				print_contact_list(void);
 		int					prompt_for_contact_index(void);
 		void				print_contact_details(int index);
+		static void			print_header(void);
 		static const size_t	index_buf_size;
+		enum Field
+		{
+			First_Name = 0,
+			Last_Name,
+			Nickname,
+			Phone_Number,
+			Darkest_Secret
+		};
 };
 
 int		cin_buff_overflow(int bufsize);

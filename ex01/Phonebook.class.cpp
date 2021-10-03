@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:23:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/02 22:35:10 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/03 15:33:15 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static bool	isNumber(char *str)
 void	Phonebook::addContact(void)
 {
 	static int	index = 0;
-	int			field = Contact::First_Name;
+	int			field = Phonebook::First_Name;
 	char		buff[FIELD_BUFF_SIZE];
 
 	if (index > CONTACT_MAX-1)
@@ -136,11 +136,11 @@ void	Phonebook::addContact(void)
 	return ;
 }
 
-static void	print_header(void)
+void	Phonebook::print_header(void)
 {
 	//print header
 	std::cout << "|" << std::setw(10) << "Index" << "|";
-	for (size_t field = Contact::First_Name; field <= Contact::Nickname; field++)
+	for (size_t field = Phonebook::First_Name; field <= Phonebook::Nickname; field++)
 	{
 		std::cout << std::setw(10);
 		Contact::showFieldName(field);
@@ -179,7 +179,7 @@ bool	Phonebook::print_contact_list(void)
 	for (size_t index = 0; index < this->indexed; index++)
 	{
 		std::cout << "|" << std::setw(10) << index+1 << "|";
-		for (int field = Contact::First_Name; field <= Contact::Nickname; field++)
+		for (int field = Phonebook::First_Name; field <= Phonebook::Nickname; field++)
 		{
 			if (this->contact[index].getFieldDataLength(field) <= 10)
 			{
@@ -251,7 +251,7 @@ int		Phonebook::prompt_for_contact_index(void)
 
 void	Phonebook::print_contact_details(int index)
 {
-	for (int field = Contact::First_Name; field < TOTAL_FIELD_NUM; field++)
+	for (int field = Phonebook::First_Name; field < TOTAL_FIELD_NUM; field++)
 	{
 			std::cout << GRN;
 			Contact::showFieldPrompt(field);
@@ -273,7 +273,7 @@ void	Phonebook::print_contact_details(int index)
 void	Phonebook::searchContact(void)
 {
 
-	print_header();
+	Phonebook::print_header();
 	if (this->print_contact_list())
 		this->print_contact_details(this->prompt_for_contact_index());
 	return ;

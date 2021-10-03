@@ -6,11 +6,11 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/02 22:55:39 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/03 15:17:46 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = bankster
 
 SRCDIR = .
 
@@ -20,7 +20,7 @@ YEL = \e[1;33m
 DEL = \e[2K\r
 RST = \e[0m
 
-SRCFILES =	$(SRCDIR)/
+SRCFILES = $(SRCDIR)/Account.cpp $(SRCDIR)/tests.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
