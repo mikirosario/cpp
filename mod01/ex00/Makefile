@@ -6,11 +6,11 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/03 15:50:30 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/03 18:40:58 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bankster
+NAME = brainz
 
 SRCDIR = .
 
@@ -20,7 +20,7 @@ YEL = \e[1;33m
 DEL = \e[2K\r
 RST = \e[0m
 
-SRCFILES = $(SRCDIR)/Account.cpp $(SRCDIR)/tests.cpp
+SRCFILES = $(SRCDIR)/
 
 OBJS = $(SRCFILES:.cpp=.o)
 
