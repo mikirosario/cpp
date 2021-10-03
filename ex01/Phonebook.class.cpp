@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:23:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/03 15:33:15 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/03 15:48:50 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,16 +121,6 @@ void	Phonebook::addContact(void)
 		else
 			this->contact[index].setFieldData(field++, buff);
 	}
-
-// //debug code	
-// 	for (field = Contact::First_Name; field <= Contact::Darkest_Secret; field++)
-// 	{
-// 		std::cout << GRN;
-// 		Contact::showFieldPrompt(field);
-// 		this->contact[index].showFieldData(field);
-// 		std::cout << RESET << std::endl;
-// 	}	
-// // debug code
 	index++;
 	this->changeIndexed(1);
 	return ;
@@ -138,7 +128,6 @@ void	Phonebook::addContact(void)
 
 void	Phonebook::print_header(void)
 {
-	//print header
 	std::cout << "|" << std::setw(10) << "Index" << "|";
 	for (size_t field = Phonebook::First_Name; field <= Phonebook::Nickname; field++)
 	{
