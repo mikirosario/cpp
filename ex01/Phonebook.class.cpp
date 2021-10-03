@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:23:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/03 15:48:50 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/03 17:30:36 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	Phonebook::addContact(void)
 			this->contact[index].setFieldData(field++, buff);
 	}
 	index++;
-	this->changeIndexed(1);
+	if (this->indexed < CONTACT_MAX)
+		this->changeIndexed(1);
 	return ;
 }
 
@@ -270,7 +271,7 @@ void	Phonebook::searchContact(void)
 
 void	Phonebook::changeIndexed(int n)
 {
-	if (this->indexed + n < CONTACT_MAX)
+	if (this->indexed + n <= CONTACT_MAX)
 		this->indexed += n;
 	return ;
 }
