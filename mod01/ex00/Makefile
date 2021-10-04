@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/03 18:40:58 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/04 20:28:56 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ YEL = \e[1;33m
 DEL = \e[2K\r
 RST = \e[0m
 
-SRCFILES = $(SRCDIR)/
+SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/Zombie.cpp $(SRCDIR)/newZombie.cpp $(SRCDIR)/randomChump.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
