@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:08:39 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 00:03:33 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/05 00:30:26 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,6 @@
 #include <vector>
 #include <string>
 #include "Zombie.hpp"
-
-/*
-** This parser is REVENGE for 2 years of Norminette! No explanation. I'll let it
-** speak for itself! xD
-*/
-
-size_t	get_zombie_names(std::vector<std::string> *zombie_names, char **argv)
-{
-	size_t	name_len = 0;
-	size_t	number_of_zombies = 0;
-
-	for (++argv ; *argv; argv++)
-	{
-		for (char *name = *argv; *name; name += name_len, name_len = 0)
-		{
-			for ( ; std::isspace(*name) ; name++)
-			{
-			}
-			for ( ; name[name_len] && !std::isspace(name[name_len]) ; name_len++)
-			{
-			}
-			std::string	name_str(name, name_len);
-			zombie_names->push_back(name_str);
-			number_of_zombies++;
-			for ( ; std::isspace(name[name_len]) ; name_len++)
-			{
-			}
-		}		
-	}
-	return (number_of_zombies);
-}
 
 /*
 ** //HEAP ZOMBIES\\
@@ -81,26 +50,23 @@ size_t	get_zombie_names(std::vector<std::string> *zombie_names, char **argv)
 
 int	main(int argc, char **argv)
 {
-	std::vector<std::string>					zombie_names;
-	Zombie										*zombie_ptr;
-	size_t										number_of_zombies;
-	size_t										i = 0;
-	
-	number_of_zombies = get_zombie_names(&zombie_names, argv);
-	//HEAP ZOMBIES
-	for ( ; i < number_of_zombies / 2; i++)
+	int			zombie_number;
+	std::string	zombie_name;
+	Zombie		*zombie_horde = NULL;
+
+	if (argc != 3 || (zombie_number = std::atoi(argv[1])) < 1)
 	{
-		zombie_ptr = newZombie(zombie_names[i]);
-		zombie_ptr->announce();
-		delete(zombie_ptr);
+		std::cerr << "Specify zombie number and name, i.e.: [moarbrainz 4 lola]" << std::endl;
+		return (1);
 	}
-	//STACK ZOMBIES
-	for ( ; i < number_of_zombies; i++)
-		randomChump(zombie_names[i]);
-	
-	//DEBUG CODE Name printer
-	// for (std::vector<std::string>::const_iterator it = zombie_names.begin(); it < zombie_names.end(); it++)
-	// 	std::cout << *it << std::endl;
-	//DEBUG CODE
+	zombie_name = argv[2];
+
+	zombie_horde = zombieHorde(zombie_number, zombie_name);
+	if (zombie_horde)
+	{
+		for (int i = 0; i < zombie_number; i++)
+			zombie_horde[i].announce();
+		delete[] (zombie_horde);
+	}
 	return (0);
 }

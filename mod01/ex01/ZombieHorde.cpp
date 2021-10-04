@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/03 18:51:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/04 23:52:09 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/04 22:56:20 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 00:32:01 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <exception>
 
-Zombie	*newZombie(std::string name)
+Zombie	*zombieHorde(int N, std::string name)
 {
 	Zombie	*zptr;
 
 	try
 	{
-		new Zombie(name);
+		zptr = new Zombie[N];
 	}
-	catch(const std::exception& e)
+	catch (std::exception& e)
 	{
-		std::cerr << "Exception in newZombie function: " << e.what() << '\n';
+		std::cerr << "Exception in zombieHorde function: " << e.what() << std::endl;
 		return (NULL);
 	}
-
-	return(zptr);
+	for (--N; N >= 0; N--)
+	{
+		zptr[N].setName(name);
+	}
+	return (zptr);
 }

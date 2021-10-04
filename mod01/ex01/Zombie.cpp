@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/03 18:51:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/04 23:52:09 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/03 18:44:37 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 00:14:15 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie	*newZombie(std::string name)
+Zombie::Zombie(void)
 {
-	Zombie	*zptr;
+}
 
-	try
-	{
-		new Zombie(name);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Exception in newZombie function: " << e.what() << '\n';
-		return (NULL);
-	}
+Zombie::Zombie(std::string name) : _name(name)
+{
+}
 
-	return(zptr);
+Zombie::~Zombie()
+{
+	std::cout << "Destroyed " << this->_name << std::endl;
+}
+
+void	Zombie::announce(void)
+{
+	std::cout << _name << " BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void	Zombie::setName(std::string name)
+{
+	this->_name = name;
 }

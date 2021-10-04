@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/03 18:51:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/04 23:52:09 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/03 18:41:27 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 00:11:48 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
 
-Zombie	*newZombie(std::string name)
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
+
+class Zombie
 {
-	Zombie	*zptr;
+private:
+	std::string	_name;
+public:
+	Zombie(void);
+	Zombie(std::string name);
+	~Zombie();
+	void	announce(void);
+	void	setName(std::string name);
+};
 
-	try
-	{
-		new Zombie(name);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Exception in newZombie function: " << e.what() << '\n';
-		return (NULL);
-	}
+Zombie	*zombieHorde(int N, std::string name);
 
-	return(zptr);
-}
+#endif
