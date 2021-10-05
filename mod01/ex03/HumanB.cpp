@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 22:56:20 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 21:37:19 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/05 19:59:01 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 21:35:36 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <exception>
+#include "HumanB.hpp"
 
-Zombie	*zombieHorde(int N, std::string name)
+HumanB::HumanB(const char *name) : _name("HumanB"), _weapon(NULL)
 {
-	Zombie	*zptr;
+	if (name)
+		this->_name = name;
+}
 
-	try
-	{
-		zptr = new Zombie[N];
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Exception in zombieHorde function: " << e.what() << std::endl;
-		return (NULL);
-	}
-	for (--N; N >= 0; N--)
-	{
-		zptr[N].setName(name);
-	}
-	return (zptr);
+void	HumanB::setWeapon(Weapon &weapon)
+{
+	this->_weapon = &weapon;
+}
+
+void	HumanB::attack(void)
+{
+	std::cout << this->_name << " attacks with his " << (this->_weapon ? this->_weapon->getType() : "bare fist")
+	<< std::endl;
 }

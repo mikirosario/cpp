@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 22:56:20 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 21:37:19 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/05 19:51:14 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 21:35:46 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <exception>
+#ifndef HUMANB_HP
+# define HUMANB_HP
 
-Zombie	*zombieHorde(int N, std::string name)
+#include "Weapon.hpp"
+
+class HumanB
 {
-	Zombie	*zptr;
+private:
+	Weapon		*_weapon;
+	std::string	_name;
+	
+public:
+	HumanB(const char *name);
+	void	setWeapon(Weapon &weapon);
+	void	attack();
+};
 
-	try
-	{
-		zptr = new Zombie[N];
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Exception in zombieHorde function: " << e.what() << std::endl;
-		return (NULL);
-	}
-	for (--N; N >= 0; N--)
-	{
-		zptr[N].setName(name);
-	}
-	return (zptr);
-}
+#endif

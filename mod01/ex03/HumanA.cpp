@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 22:56:20 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 21:37:19 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/05 19:45:33 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 21:35:56 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <exception>
+#include "HumanA.hpp"
 
-Zombie	*zombieHorde(int N, std::string name)
+HumanA::HumanA(const char *name, Weapon &weapon_ref) : _name("HumanA"), _weapon(weapon_ref)
 {
-	Zombie	*zptr;
+	if (name)
+		this->_name = name;
+}
 
-	try
-	{
-		zptr = new Zombie[N];
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Exception in zombieHorde function: " << e.what() << std::endl;
-		return (NULL);
-	}
-	for (--N; N >= 0; N--)
-	{
-		zptr[N].setName(name);
-	}
-	return (zptr);
+void	HumanA::attack(void)
+{
+	std::cout << this->_name << " attacks with his " << this->_weapon.getType()
+	<< std::endl;
 }

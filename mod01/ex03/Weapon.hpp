@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 22:56:20 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 21:37:19 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/05 19:21:25 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/05 21:36:06 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <exception>
+#ifndef WEAPON_H
+# define WEAPON_H
 
-Zombie	*zombieHorde(int N, std::string name)
+#include <iostream>
+
+class Weapon
 {
-	Zombie	*zptr;
+private:
+	std::string	_type;
+public:
+	Weapon(const char *type);
+	const std::string	&getType();
+	void				setType(const char *type);
+};
 
-	try
-	{
-		zptr = new Zombie[N];
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Exception in zombieHorde function: " << e.what() << std::endl;
-		return (NULL);
-	}
-	for (--N; N >= 0; N--)
-	{
-		zptr[N].setName(name);
-	}
-	return (zptr);
-}
+#endif
