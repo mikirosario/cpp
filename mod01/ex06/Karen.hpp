@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 13:28:08 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 17:24:22 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/06 17:09:21 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ private:
 public:
 	Karen();
 	void	complain(std::string level);
+	void	karenFilter(std::string level);
 };

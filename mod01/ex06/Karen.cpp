@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 13:28:59 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 17:24:11 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/06 17:23:12 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,49 @@ void	Karen::complain(std::string level)
 	{
 	}
 	(this->*_pair.second[i])();
+}
+
+void	Karen::karenFilter(std::string level)
+{
+	int		i;
+	enum	levels
+	{
+		DEBUG = 0,
+		INFO,
+		WARNING,
+		ERROR,
+	};
+	
+	for (i = 0; i < 4 && (this->_pair.first[i].compare(level)); i++)
+	{
+	}
+	switch (i)
+	{
+		case DEBUG:
+			std::cerr << YEL
+			<< "[ " << this->_pair.first[DEBUG] << " ]"
+			<< RESET
+			<< std::endl;
+			(this->*_pair.second[DEBUG])();
+		case INFO:
+			std::cerr << CYN
+			<< "[ " << this->_pair.first[INFO] << " ]"
+			<< RESET
+			<< std::endl;
+			(this->*_pair.second[INFO])();
+		case WARNING:
+			std::cerr << MAG
+			<< "[ " << this->_pair.first[WARNING] << " ]"
+			<< RESET
+			<< std::endl;
+			(this->*_pair.second[WARNING])();
+		case ERROR:
+			std::cerr << RED << "[ " << this->_pair.first[ERROR] << " ]"
+			<< RESET
+			<< std::endl;
+			(this->*_pair.second[ERROR])();
+			break ;
+		default:
+			std::cerr << "[ Probably complaining about insignificant problems ]" << std::endl;
+	}
 }
