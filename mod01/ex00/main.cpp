@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:08:39 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 00:03:33 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/06 21:10:10 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,19 @@ int	main(int argc, char **argv)
 	for ( ; i < number_of_zombies / 2; i++)
 	{
 		zombie_ptr = newZombie(zombie_names[i]);
-		zombie_ptr->announce();
-		delete(zombie_ptr);
+		if (zombie_ptr)
+		{
+			zombie_ptr->announce();
+			delete(zombie_ptr);
+		}
 	}
 	//STACK ZOMBIES
 	for ( ; i < number_of_zombies; i++)
 		randomChump(zombie_names[i]);
 	
-	//DEBUG CODE Name printer
+	// //DEBUG CODE Name printer
 	// for (std::vector<std::string>::const_iterator it = zombie_names.begin(); it < zombie_names.end(); it++)
 	// 	std::cout << *it << std::endl;
-	//DEBUG CODE
+	// //DEBUG CODE
 	return (0);
 }

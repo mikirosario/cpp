@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 18:51:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/04 23:52:09 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/06 21:01:33 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Zombie	*newZombie(std::string name)
 
 	try
 	{
-		new Zombie(name);
+		zptr = new Zombie(name);
 	}
 	catch(const std::exception& e)
 	{
