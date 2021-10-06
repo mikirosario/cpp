@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 21:54:30 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 13:15:44 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/06 13:21:17 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int argc, const char **argv)
 	{
 		Replacer	replacer(argv[1]);
 		replacer.Replace(argv[2], argv[3]);
-		replacer.setFile("badfilename");
-		replacer.Replace(argv[2], argv[3]);
+		//replacer.setFile("badfilename");
+		//replacer.Replace(argv[2], argv[3]);
 	}
 	return (0);
 }
