@@ -6,24 +6,13 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 00:37:29 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 00:56:46 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/06 13:18:01 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Replacer.hpp"
 
-namespace endprog
-{
-	static void	closeOpenFiles(std::ifstream &original_file, std::ofstream &new_file)
-	{
-		if (original_file.is_open())
-			original_file.close();
-		if (new_file.is_open())
-			new_file.close();
-	}
-}
-
-Replacer::~Replacer()
+void	Replacer::_closeFiles(void)
 {
 	if (this->_original_file.is_open())
 		this->_original_file.close();
@@ -31,32 +20,61 @@ Replacer::~Replacer()
 		this->_new_file.close();
 }
 
-void	Replacer::Replace(const std::string &filename, const std::string &s1,
-const std::string &s2)
+bool	Replacer::fileOpenSuccess(void)
 {
-	std::ifstream	original_file;
-	std::ofstream	new_file;
-	std::string		new_filename;
+	if (this->_original_file.fail())
+		std::cerr << this->_original_filename << ": " << strerror(errno) << std::endl;
+	else if (this->_new_file.fail())
+		std::cerr << this->_new_filename << ": " << strerror(errno) << std::endl;
+	else
+		return (true);
+	return (false);
+}
+
+bool	Replacer::_fileCloseSuccess(void)
+{
+	if (this->_original_file.is_open() || this->_new_file.is_open())
+		return (false);
+	return (true);
+}
+
+Replacer::Replacer(const std::string filename) : _original_filename(filename)
+{	
+	this->_new_filename = filename;
+	this->_new_filename += ".replace";
+	this->_original_file.open(filename);
+	if (this->_original_file.is_open())
+		this->_new_file.open(this->_new_filename);
+}
+
+Replacer::~Replacer()
+{
+	this->_closeFiles();
+}
+
+void	Replacer::setFile(const std::string filename)
+{
+	this->_closeFiles();
+	if (this->_fileCloseSuccess())
+	{
+		this->_original_filename = filename;
+		this->_original_file.open(filename);
+		if (this->_original_file.is_open())
+			this->_new_file.open(this->_new_filename);
+	}
+}
+
+void	Replacer::Replace(const std::string s1, const std::string s2)
+{
 	std::string		linebuf;
 
-	new_filename = filename;
-	new_filename += ".replace";
-	original_file.open(filename);
-	new_file.open(new_filename);
-	
-	new_file.open()
-
-	new_file.open(new_filename);
-	if (iamerror::failedOpen(new_file, new_filename))
-		endprog::closeProg(original_file, new_file, 1);
-	s1 = argv[2];
-	s2 = argv[3];
-	while (std::getline(original_file, linebuf))
-	{
-		if (linebuf == s1)
-			new_file << s2 << std::endl;
-		else
-			new_file << linebuf << std::endl;
-	}
-	endprog::closeProg(original_file, new_file, 0);
+	if (fileOpenSuccess())
+		while (std::getline(this->_original_file, linebuf))
+		{
+			if (linebuf == s1)
+				this->_new_file << s2 << std::endl;
+			else
+				this->_new_file << linebuf << std::endl;
+		}
+	return ;
 }

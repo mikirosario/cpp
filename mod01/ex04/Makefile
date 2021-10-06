@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/05 21:52:58 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/06 13:19:36 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RST = \e[0m
 
 CXX = clang++
 
-SRCFILES = $(SRCDIR)/main.cpp
+SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/Replacer.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJS)
 
 clean:
 	@printf "$(YEL)Deleting object files...$(RST)"
-	@rm $(OBJS) 2>/dev/null || true
+	@rm $(OBJS) *.replace* 2>/dev/null || true
 	@printf "$(DEL)$(GRN)Deleted object files\n$(RST)"
 
 fclean: clean
