@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/05 21:08:20 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/06 23:46:38 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,20 @@ YEL = \e[1;33m
 DEL = \e[2K\r
 RST = \e[0m
 
+CXX = clang++
+
 SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/Weapon.cpp $(SRCDIR)/HumanA.cpp $(SRCDIR)/HumanB.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
 INCLUDES = -I $(SRCDIR)
 
-FLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	clang++ $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $(OBJS)
 
 clean:
 	@printf "$(YEL)Deleting object files...$(RST)"
