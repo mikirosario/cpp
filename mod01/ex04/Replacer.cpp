@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Replacer.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 00:37:29 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 13:18:01 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/07 02:41:46 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Replacer.hpp"
+#include <cstring>
 
 void	Replacer::_closeFiles(void)
 {
@@ -23,9 +24,9 @@ void	Replacer::_closeFiles(void)
 bool	Replacer::fileOpenSuccess(void)
 {
 	if (this->_original_file.fail())
-		std::cerr << this->_original_filename << ": " << strerror(errno) << std::endl;
+		std::cerr << this->_original_filename << ": " << std::strerror(errno) << std::endl;
 	else if (this->_new_file.fail())
-		std::cerr << this->_new_filename << ": " << strerror(errno) << std::endl;
+		std::cerr << this->_new_filename << ": " << std::strerror(errno) << std::endl;
 	else
 		return (true);
 	return (false);
@@ -71,10 +72,13 @@ void	Replacer::Replace(const std::string s1, const std::string s2)
 	if (fileOpenSuccess())
 		while (std::getline(this->_original_file, linebuf))
 		{
-			if (linebuf == s1)
-				this->_new_file << s2 << std::endl;
-			else
-				this->_new_file << linebuf << std::endl;
+			for (size_t pos = 0; (pos = linebuf.find(s1, pos)) < linebuf.npos; )
+			{
+				linebuf.erase(pos, s1.length());
+				linebuf.insert(pos, s2);
+				pos += s2.length();
+			}
+			this->_new_file << linebuf << std::endl;
 		}
 	return ;
 }
