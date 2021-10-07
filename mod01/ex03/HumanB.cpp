@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:59:01 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/05 21:35:36 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/07 02:56:47 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(const char *name) : _name("HumanB"), _weapon(NULL)
+HumanB::HumanB(const char *name) : _weapon(NULL), _name("HumanB")
 {
 	if (name)
 		this->_name = name;

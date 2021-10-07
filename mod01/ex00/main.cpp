@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:08:39 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 21:10:10 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/07 02:49:48 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,11 @@ int	main(int argc, char **argv)
 	size_t										number_of_zombies;
 	size_t										i = 0;
 	
+	if (argc < 2)
+	{
+		std::cerr << "Pass in zombie names as arguments like this: [./brainz Pepe Paco Pili Lulu]" << std::endl;
+		return (1);
+	}
 	number_of_zombies = get_zombie_names(&zombie_names, argv);
 	//HEAP ZOMBIES
 	for ( ; i < number_of_zombies / 2; i++)

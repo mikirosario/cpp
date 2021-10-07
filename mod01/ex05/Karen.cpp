@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Karen.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 13:28:59 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/06 17:24:11 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/07 02:59:29 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	Karen::error(void)
 void	Karen::complain(std::string level)
 {
 	int i;
-	int ret;
 
 	for (i = 0; i < 4 && (this->_pair.first[i].compare(level)); i++)
 	{
