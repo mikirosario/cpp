@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:16:23 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/08 20:26:39 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/09 01:06:56 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include <fstream>
 
 class Fixed
 {
 	private:
 		int					_value;
-		static const int	_fractional_bits = 8;
+		int static const	_fractional_bits = 8;
 	public:
 		Fixed();
 		Fixed(Fixed const &value);
-		Fixed(const int value);
+		Fixed(float const float_value);
+		Fixed(int const value);
 		~Fixed();
 
-		Fixed	&operator=(Fixed const &right_value);
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
-		int		toInt(void);
+		Fixed			&operator=(Fixed const &right_value);
+		int				getRawBits(void) const;
+		void			setRawBits(int const raw);
+		float			toFloat(void) const;
+		int				toInt(void) const;
 };
+
+std::ostream	&operator<<(std::ostream &output, Fixed const &fixed_point_value);

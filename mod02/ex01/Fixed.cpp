@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:19:58 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/08 20:27:48 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/09 01:07:59 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <iostream>
 
 //int == 4 bytes == 32 bits
 //fractional bits 8
@@ -33,12 +34,22 @@ Fixed::Fixed(int const int_value)
 	this->_value = int_value << this->_fractional_bits;
 }
 
+Fixed::Fixed(float const float_value)
+{
+	this->_value = float_value * (float)(1 << this->_fractional_bits);
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-int		Fixed::toInt(void)
+float	Fixed::toFloat(void) const
+{
+	return ((float)this->_value / (float)(1 << this->_fractional_bits));
+}
+
+int		Fixed::toInt(void) const
 {
 	return (this->_value >> this->_fractional_bits);
 }
@@ -60,4 +71,9 @@ Fixed	&Fixed::operator=(Fixed const &right_value)
 	if (this != &right_value)
 		this->_value = right_value.getRawBits();
 	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream &output, Fixed const &fixed_point_value)
+{
+	return (output << fixed_point_value.toFloat());
 }
