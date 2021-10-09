@@ -6,12 +6,13 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:19:58 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/09 01:07:59 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/09 13:49:10 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
+#include <cmath>
 
 //int == 4 bytes == 32 bits
 //fractional bits 8
@@ -36,7 +37,7 @@ Fixed::Fixed(int const int_value)
 
 Fixed::Fixed(float const float_value)
 {
-	this->_value = float_value * (float)(1 << this->_fractional_bits);
+	this->_value = (int)roundf(float_value * (float)(1 << this->_fractional_bits));
 }
 
 Fixed::~Fixed()
