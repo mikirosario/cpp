@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 06:53:50 by miki              #+#    #+#             */
-/*   Updated: 2021/10/11 01:16:50 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/11 01:38:46 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Point::~Point(void)
 }
 
 /*
-** WHY? You may ask. Because the 42 exercise obliged us to create a Point class
+** WHY!? You may ask. Because the 42 exercise obliged us to create a Point class
 ** with two Fixed const integers, x and y, AND to create an assignation overload
 ** for it.
 **
@@ -41,7 +41,7 @@ Point::~Point(void)
 ** can overwrite them anyway. Woo-hoo!
 */
 
-static	void kobayashi_maru(Fixed const *thisvar, Fixed const *thatvar)
+static	void kobayashi_maru(Fixed const *this_var, Fixed const *that_var)
 {
 		int		type_size = sizeof(Fixed);
 
@@ -50,27 +50,22 @@ static	void kobayashi_maru(Fixed const *thisvar, Fixed const *thatvar)
 		"loop: ;"						//loop begins
 		"cmp %2,%%ecx;"					//compare counter to type_size
 		"je end;"						//if equal, jump to end
-		"movb (%1),%%al;"				//copy byte from thatx[rcx] to al
-		"movb %%al,(%0);"				//copy byte from al to thisx[rcx]
-		"inc %1;"						//increment thisx ptr
-		"inc %0;"						//increment thatx ptr
+		"movb (%1),%%al;"				//copy byte from *that_var to al
+		"movb %%al,(%0);"				//copy byte from al to *this_var
+		"inc %1;"						//increment this_var ptr
+		"inc %0;"						//increment that_var ptr
 		"inc %%ecx;"					//increment counter
 		"jmp loop;"						//return to loop beginning
 		"end: ;"						//end loop
 	:
-	: "D" (thisvar), "S" (thatvar), "d" (type_size)
+	: "D" (this_var), "S" (that_var), "d" (type_size)
 	: "%rcx", "%rax");
 }
 
 Point	&Point::operator=(Point const &point)
 {
-	Fixed const	*thisx_ptr = &this->x;
-	Fixed const	*thisy_ptr = &this->y;
-	Fixed const	*thatx_ptr = &point.x;
-	Fixed const	*thaty_ptr = &point.y;
-
-	kobayashi_maru(thisx_ptr, thatx_ptr);
-	kobayashi_maru(thisy_ptr, thaty_ptr);
+	kobayashi_maru(&this->x, &point.x);
+	kobayashi_maru(&this->y, &point.y);
 	return (*this);
 }
 
