@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 06:50:57 by miki              #+#    #+#             */
-/*   Updated: 2021/10/10 08:16:14 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/10 21:22:39 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Point
 		Point(float const a, float const b);
 		~Point(void);
 		Point		&operator=(Point const &point);
-		Point		&operator=(Point &point);
+		//Point		&operator=(Point &point);
 		Fixed		getX(void) const;
 		Fixed 		getY(void) const;
 };
