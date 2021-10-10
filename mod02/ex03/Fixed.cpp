@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:19:58 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/10 06:44:49 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/10 17:06:46 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ Fixed			Fixed::operator*(Fixed const &right_value) const
 {
 	Fixed	prod;
 
-	prod.setRawBits(((int64_t)this->_value * (int64_t)right_value.getRawBits())>>Fixed::_fractional_bits);
+	prod.setRawBits((((int64_t)this->_value * (int64_t)right_value.getRawBits())>>Fixed::_fractional_bits));
 	return(prod);
 }
 

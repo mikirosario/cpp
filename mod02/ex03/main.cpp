@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:52:44 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/10 08:49:22 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/10 18:10:41 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int	main(void)
 	Point c(20, 0);
 	Point inside(10, 15);
 	Point outside(30, 15);
-	Point edge(0, 0);
+	float epsilon = Fixed::getEpsilon().toFloat();
+	//Point edge(0.0f - epsilon, 0.0f - epsilon);
+	Point edge(0.1f, 0.1f);
 
+	std::cout << "Epsilon: " << epsilon << std::endl;
 	if (bsp(a, b, c, inside))
 		std::cout << "True" << std::endl;
 	else
