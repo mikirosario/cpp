@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:19:58 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/09 13:49:10 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/09 20:07:33 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <cmath>
 
+//0101 1010 0101 1010 1010 1010 . 0111 1100
 //int == 4 bytes == 32 bits
 //fractional bits 8
 //integer bits 24 (23)
@@ -32,12 +33,12 @@ Fixed::Fixed(Fixed const &value)
 
 Fixed::Fixed(int const int_value)
 {
-	this->_value = int_value << this->_fractional_bits;
+	this->_value = int_value << Fixed::_fractional_bits;
 }
 
 Fixed::Fixed(float const float_value)
 {
-	this->_value = (int)roundf(float_value * (float)(1 << this->_fractional_bits));
+	this->_value = (int)roundf(float_value * (float)(1 << Fixed::_fractional_bits));
 }
 
 Fixed::~Fixed()
@@ -47,12 +48,12 @@ Fixed::~Fixed()
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->_value / (float)(1 << this->_fractional_bits));
+	return ((float)this->_value / (float)(1 << Fixed::_fractional_bits));
 }
 
 int		Fixed::toInt(void) const
 {
-	return (this->_value >> this->_fractional_bits);
+	return (this->_value >> Fixed::_fractional_bits);
 }
 
 int		Fixed::getRawBits(void) const

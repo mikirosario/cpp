@@ -6,9 +6,12 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:16:23 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/09 01:06:23 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/09 20:03:27 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FIXED_H
+# define FIXED_H
 
 class Fixed
 {
@@ -24,3 +27,5 @@ class Fixed
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);		
 };
+
+#endif

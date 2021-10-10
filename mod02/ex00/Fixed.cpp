@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:19:58 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/08 17:02:05 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:59:04 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <iostream>
 
 Fixed::Fixed() : _value(0)
 {
