@@ -6,7 +6,7 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/08 16:57:15 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/11 20:22:23 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJS = $(SRCFILES:.cpp=.o)
 
 INCLUDES = -I $(SRCDIR)
 
-CXXFLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
