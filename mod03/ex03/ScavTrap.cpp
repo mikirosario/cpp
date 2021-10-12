@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 02:59:22 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 06:39:58 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 08:14:59 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,21 @@ static void	destroy_msg(std::string const &name)
 	std::cout << CLASS_NAME << name << " destroyed." << std::endl;
 }
 
+ScavTrap::ScavTrap(void)
+{
+	this->Hitpoints = ST_MAX_HP;
+	this->Energy_points = ST_ENERGY_PTS;
+	this->Attack_damage = ST_ATTACK_DMG;
+	this->_maxHP = this->Hitpoints;
+}
+
 ScavTrap::ScavTrap(std::string const &name) : ClapTrap(name)
 {
 	create_msg(name);
 	this->Hitpoints = ST_MAX_HP;
 	this->Energy_points = ST_ENERGY_PTS;
 	this->Attack_damage = ST_ATTACK_DMG;
-	this->_maxHP = ST_MAX_HP;
+	this->_maxHP = this->Hitpoints;
 }
 
 ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap(src)

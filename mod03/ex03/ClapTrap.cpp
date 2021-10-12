@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:54:42 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 06:38:12 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 07:47:14 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ static void	destroy_msg(std::string &name)
 	std::cout << CLASS_NAME << name << " destroyed." << std::endl;
 }
 
+ClapTrap::ClapTrap(void)
+{
+}
+
 ClapTrap::ClapTrap(std::string const &name) : Name(name), Hitpoints(CT_MAX_HP),
-Energy_points(CT_ENERGY_PTS), Attack_damage(CT_ATTACK_DMG)
+Energy_points(CT_ENERGY_PTS), Attack_damage(CT_ATTACK_DMG), _maxHP(CT_MAX_HP)
 {
 	create_msg(this->Name);
 }
@@ -47,6 +51,7 @@ ClapTrap	&ClapTrap::operator=(ClapTrap const &src)
 	this->Hitpoints = src.Hitpoints;
 	this->Energy_points = src.Energy_points;
 	this->Attack_damage = src.Attack_damage;
+	this->_maxHP = src._maxHP;
 	return (*this);
 }
 
@@ -68,21 +73,23 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	std::cout << CLASS_NAME << this->Name << " takes "
 	<< (lost_all_hitpoints ? points_to_die : amount)
 	<< " points of damage, and is left with " << this->Hitpoints
-	<< " hitpoints." << std::endl;
+	<< " hitpoints and " << this->Energy_points << " energy points."
+	<< std::endl;
 
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	unsigned int	points_to_heal_fully = (CT_MAX_HP - this->Hitpoints);
+	unsigned int	points_to_heal_fully = (this->_maxHP - this->Hitpoints);
 	bool			healed_fully = (amount >= points_to_heal_fully);
 
 	if (healed_fully)
-		this->Hitpoints = CT_MAX_HP;
+		this->Hitpoints = this->_maxHP;
 	else
 		this->Hitpoints += amount;
 	std::cout << CLASS_NAME << this->Name << " heals "
 	<< (healed_fully ? points_to_heal_fully : amount)
 	<< " points of damage, and is left with " << this->Hitpoints
-	<< " hitpoints." << std::endl;
+	<< " hitpoints and " << this->Energy_points << " energy points."
+	<< std::endl;
 }

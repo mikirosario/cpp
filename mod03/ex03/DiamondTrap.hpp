@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 03:21:32 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 06:36:02 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/12 05:45:47 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/12 08:19:26 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_H
-# define FRAGTRAP_H
+#ifndef DIAMONDTRAP_H
+# define DIAMONDTRAP_H
 
-#include "ClapTrap.hpp"
-#define FT_MAX_HP 100
-#define FT_ENERGY_PTS 100
-#define FT_ATTACK_DMG 30
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class FragTrap : public ClapTrap
+class DiamondTrap :  public ScavTrap, public FragTrap
 {
+	private:
+		std::string	Name;
 	public:
-	FragTrap(std::string const &name);
-	FragTrap(FragTrap const &src);
-	~FragTrap(void);
-	FragTrap	&operator=(FragTrap const &src);
-	void		attack(std::string const &target);
-	void		highFivesGuys(void);
+		DiamondTrap(std::string const &name);
+		DiamondTrap(DiamondTrap const &src);
+		~DiamondTrap(void);
+		DiamondTrap	&operator=(DiamondTrap const &src);
+		void		attack(std::string const &target);
+		void		whoAmI(void);
 };
 
 #endif

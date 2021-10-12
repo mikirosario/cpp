@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:54:42 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 03:18:33 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 06:37:35 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static void	destroy_msg(std::string &name)
 	std::cout << CLASS_NAME << name << " destroyed." << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string const &name) : Name(name), Hitpoints(MAX_HP),
-Energy_points(ENERGY_PTS), Attack_damage(ATTACK_DMG)
+ClapTrap::ClapTrap(std::string const &name) : Name(name), Hitpoints(CT_MAX_HP),
+Energy_points(CT_ENERGY_PTS), Attack_damage(CT_ATTACK_DMG), _maxHP(CT_MAX_HP)
 {
 	create_msg(this->Name);
 }
 
-ClapTrap::ClapTrap(ClapTrap const &clap_trap)
+ClapTrap::ClapTrap(ClapTrap const &src)
 {
-	*this = clap_trap;
+	*this = src;
 	create_msg(this->Name);
 }
 
@@ -40,13 +40,14 @@ ClapTrap::~ClapTrap(void)
 	destroy_msg(this->Name);
 }
 
-ClapTrap	&ClapTrap::operator=(ClapTrap const &clap_trap)
+ClapTrap	&ClapTrap::operator=(ClapTrap const &src)
 {
-	std::cout << CLASS_NAME << this->Name << " is equal to " << clap_trap.Name << std::endl;
-	this->Name = clap_trap.Name;
-	this->Hitpoints = clap_trap.Hitpoints;
-	this->Energy_points = clap_trap.Energy_points;
-	this->Attack_damage = clap_trap.Attack_damage;
+	std::cout << CLASS_NAME << this->Name << " is equal to " << src.Name << std::endl;
+	this->Name = src.Name;
+	this->Hitpoints = src.Hitpoints;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage;
+	this->_maxHP = src._maxHP;
 	return (*this);
 }
 
@@ -74,11 +75,11 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	unsigned int	points_to_heal_fully = (MAX_HP - this->Hitpoints);
+	unsigned int	points_to_heal_fully = (this->_maxHP - this->Hitpoints);
 	bool			healed_fully = (amount >= points_to_heal_fully);
 
 	if (healed_fully)
-		this->Hitpoints = MAX_HP;
+		this->Hitpoints = this->_maxHP;
 	else
 		this->Hitpoints += amount;
 	std::cout << CLASS_NAME << this->Name << " heals "

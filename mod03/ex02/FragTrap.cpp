@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 03:25:46 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 03:28:23 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 06:42:30 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static void	destroy_msg(std::string const &name)
 
 FragTrap::FragTrap(std::string const &name) : ClapTrap(name)
 {
+	this->Hitpoints = FT_MAX_HP;
+	this->Energy_points = FT_ENERGY_PTS;
+	this->Attack_damage = FT_ATTACK_DMG;
+	this->_maxHP = FT_MAX_HP;
 	create_msg(name);
 }
 
@@ -46,6 +50,7 @@ FragTrap	&FragTrap::operator=(FragTrap const &src)
 	this->Hitpoints = src.Hitpoints;
 	this->Energy_points = src.Energy_points;
 	this->Attack_damage = src.Attack_damage;
+	this->_maxHP = src._maxHP;
 	return (*this);
 }
 

@@ -6,18 +6,18 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 08:23:04 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 08:24:09 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-	std::cout << "FRAGTRAP INHERITANCE CHAIN:" << std::endl;
-	FragTrap patricia("Patricia");
-	FragTrap kevin("Kevin");
-	FragTrap mario("Mario");
+	std::cout << "DIAMONDTRAP INHERITANCE CHAIN:" << std::endl;
+	DiamondTrap patricia("Patricia");
+	DiamondTrap kevin("Kevin");
+	DiamondTrap mario("Mario");
 	std::cout << std::endl;
 	std::cout << "DERIVED ASSIGNMENT OPERATOR:" << std::endl;
 	mario = patricia;
@@ -32,6 +32,14 @@ int	main(void)
 	std::cout << "DERIVED HIGH FIVES:" << std::endl;
 	mario.highFivesGuys();
 	std::cout << std::endl;
-	std::cout << "FRAGTRAP DESTRUCTORS:" << std::endl;
+	std::cout << "DERIVED GUARD GATE:" << std::endl;
+	mario.guardGate();;
+	std::cout << std::endl;
+	std::cout << "WHOAMI:" << std::endl;
+	patricia.whoAmI();
+	kevin.whoAmI();
+	mario.whoAmI();
+	std::cout << std::endl;
+	std::cout << "DIAMONDTRAP DESTRUCTORS:" << std::endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:30:22 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 06:37:45 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 06:49:18 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class ClapTrap
 		unsigned int	Energy_points;
 		unsigned int	Attack_damage;
 		unsigned int	_maxHP;
+		ClapTrap(void);
 	public:
 		ClapTrap(std::string const &name);
 		ClapTrap(ClapTrap const &src);

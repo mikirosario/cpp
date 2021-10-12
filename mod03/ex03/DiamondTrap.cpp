@@ -1,49 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 02:59:22 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 06:39:58 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/12 05:52:46 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/12 08:20:53 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
-#define CLASS_NAME "ScavTrap "
+#define CLASS_NAME "DiamondTrap "
 
-static void	create_msg(std::string const &name)
+static void	create_msg(std::string &name)
 {
 	std::cout << CLASS_NAME << name << " spawned." << std::endl;
 }
 
-static void	destroy_msg(std::string const &name)
+static void	destroy_msg(std::string &name)
 {
 	std::cout << CLASS_NAME << name << " destroyed." << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string const &name) : ClapTrap(name)
+DiamondTrap::DiamondTrap(std::string const &name) : ClapTrap(name + "_clap_name"), Name(name)
 {
-	create_msg(name);
-	this->Hitpoints = ST_MAX_HP;
+	this->Hitpoints = FT_MAX_HP;
 	this->Energy_points = ST_ENERGY_PTS;
-	this->Attack_damage = ST_ATTACK_DMG;
-	this->_maxHP = ST_MAX_HP;
-}
-
-ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap(src)
-{
+	this->Attack_damage = FT_ATTACK_DMG;
+	this->_maxHP = this->Hitpoints;
 	create_msg(this->Name);
 }
 
-ScavTrap::~ScavTrap(void)
+DiamondTrap::~DiamondTrap(void)
 {
 	destroy_msg(this->Name);
 }
 
-ScavTrap	&ScavTrap::operator=(ScavTrap const &src)
+DiamondTrap	&DiamondTrap::operator=(DiamondTrap const &src)
 {
 	std::cout << CLASS_NAME << this->Name << " is equal to " << src.Name << std::endl;
 	this->Name = src.Name;
@@ -54,13 +49,12 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &src)
 	return (*this);
 }
 
-void		ScavTrap::attack(std::string const &target)
+void		DiamondTrap::attack(std::string const &target)
 {
-	std::cout << CLASS_NAME << this->Name << " attacks " << target << ", causing "
-	<< this->Attack_damage << " points of damage!" << std::endl;
+	this->ScavTrap::attack(target);
 }
 
-void		ScavTrap::guardGate(void)
+void		DiamondTrap::whoAmI(void)
 {
-	std::cout << CLASS_NAME << this->Name << " entered Gate Keeper Mode." << std::endl;
+	std::cout << "I am " << this->Name << " and I am " << this->ClapTrap::Name << std::endl;
 }
