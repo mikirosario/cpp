@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:30:22 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 03:03:36 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 03:13:41 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define CLAPTRAP_H
 
 #include <iostream>
-#define MAX_HP 10
-#define ENERGY_PTS 10
-#define ATTACK_DMG 0
+#define MAX_HP 100
+#define ENERGY_PTS 50
+#define ATTACK_DMG 20
 
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string Name;
 		unsigned int Hitpoints;
 		unsigned int Energy_points;

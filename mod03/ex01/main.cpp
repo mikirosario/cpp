@@ -6,27 +6,32 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 02:55:35 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/12 03:14:41 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	std::cout << "CLAPTRAP INSTANTIATION:" << std::endl;
-	ClapTrap patricia("Patricia");
-	ClapTrap kevin("Kevin");
-	ClapTrap mario("Mario");
+	std::cout << "SCAVTRAP INHERITANCE CHAIN:" << std::endl;
+	ScavTrap patricia("Patricia");
+	ScavTrap kevin("Kevin");
+	ScavTrap mario("Mario");
 	std::cout << std::endl;
-	std::cout << "CLAPTRAP ASSIGNMENT OPERATOR:" << std::endl;
+	std::cout << "DERIVED ASSIGNMENT OPERATOR:" << std::endl;
 	mario = patricia;
 	std::cout << std::endl;
-	std::cout << "CLAPTRAP FUNCTIONS:" << std::endl;
+	std::cout << "DERIVED ATTACK:" << std::endl;
 	patricia.attack("Kevin");
+	std::cout << std::endl;
+	std::cout << "BASE DAMAGE AND REPAIR:" << std::endl;
 	kevin.takeDamage(8);
 	kevin.beRepaired(20);
 	std::cout << std::endl;
-	std::cout << "CLAPTRAP DESTRUCTORS:" << std::endl;
+	std::cout << "DERIVED GUARD GATE:" << std::endl;
+	mario.guardGate();
+	std::cout << std::endl;
+	std::cout << "SCAVTRAP DESTRUCTORS:" << std::endl;
 	return (0);
 }
