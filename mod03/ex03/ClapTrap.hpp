@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:30:22 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 06:49:18 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:11:16 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 #define CT_MAX_HP 10
 #define CT_ENERGY_PTS 10
 #define CT_ATTACK_DMG 0
+
+/*
+** Declaring a virtual base class destructor automatically makes all inherited
+** class destructors virtual, even if not explicitly declared.
+*/
 
 class ClapTrap
 {
@@ -30,7 +35,7 @@ class ClapTrap
 	public:
 		ClapTrap(std::string const &name);
 		ClapTrap(ClapTrap const &src);
-		~ClapTrap(void);
+		virtual ~ClapTrap(void);
 		ClapTrap	&operator=(ClapTrap const &src);
 		void		attack(std::string const &target);
 		void		takeDamage(unsigned int amount);

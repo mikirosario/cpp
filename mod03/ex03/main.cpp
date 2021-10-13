@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 08:24:09 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:00:25 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(void)
 	DiamondTrap patricia("Patricia");
 	DiamondTrap kevin("Kevin");
 	DiamondTrap mario("Mario");
+	ScavTrap *virtual_destructor_test = new DiamondTrap("V. Destructor");
 	std::cout << std::endl;
 	std::cout << "DERIVED ASSIGNMENT OPERATOR:" << std::endl;
 	mario = patricia;
@@ -41,5 +42,6 @@ int	main(void)
 	mario.whoAmI();
 	std::cout << std::endl;
 	std::cout << "DIAMONDTRAP DESTRUCTORS:" << std::endl;
+	delete virtual_destructor_test;
 	return (0);
 }

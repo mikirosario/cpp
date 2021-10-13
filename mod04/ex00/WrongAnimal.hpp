@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 03:21:32 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/13 16:55:42 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/13 16:34:27 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/13 16:48:07 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_H
-# define FRAGTRAP_H
+#ifndef WRONGANIMAL_H
+# define WRONGANIMAL_H
 
-#include "ClapTrap.hpp"
-#define FT_MAX_HP 100
-#define FT_ENERGY_PTS 100
-#define FT_ATTACK_DMG 30
+#include <iostream>
 
-class FragTrap : virtual public ClapTrap
+class WrongAnimal
 {
 	protected:
-		FragTrap(void);
+		std::string type;
+		bool		has_name;
 	public:
-		FragTrap(std::string const &name);
-		FragTrap(FragTrap const &src);
-		~FragTrap(void);
-		FragTrap	&operator=(FragTrap const &src);
-		void		attack(std::string const &target);
-		void		highFivesGuys(void);
+		WrongAnimal(void);
+		WrongAnimal (std::string const &src);
+		WrongAnimal (WrongAnimal const &src);
+		virtual ~WrongAnimal(void);
+		WrongAnimal			&operator=(WrongAnimal const &src);
+		void				makeSound(void) const;
+		std::string const	&getType(void) const;
 };
 
 #endif

@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 03:21:32 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/13 16:55:42 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/13 12:26:53 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/13 17:28:00 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_H
-# define FRAGTRAP_H
+#ifndef ANIMAL_H
+# define ANIMAL_H
 
-#include "ClapTrap.hpp"
-#define FT_MAX_HP 100
-#define FT_ENERGY_PTS 100
-#define FT_ATTACK_DMG 30
+#include <iostream>
 
-class FragTrap : virtual public ClapTrap
+class Animal
 {
 	protected:
-		FragTrap(void);
+		std::string type;
+		bool		has_name;
 	public:
-		FragTrap(std::string const &name);
-		FragTrap(FragTrap const &src);
-		~FragTrap(void);
-		FragTrap	&operator=(FragTrap const &src);
-		void		attack(std::string const &target);
-		void		highFivesGuys(void);
+		Animal(void);
+		Animal (std::string const &src);
+		Animal (Animal const &src);
+		virtual ~Animal(void);
+		Animal				&operator=(Animal const &src);
+		virtual void		makeSound(void) const;
+		std::string const	&getType(void) const;
 };
 
 #endif

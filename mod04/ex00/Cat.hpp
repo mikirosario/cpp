@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 03:21:32 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/13 16:55:42 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/13 16:18:37 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/13 17:33:47 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_H
-# define FRAGTRAP_H
+#ifndef CAT_H
+# define CAT_H
 
-#include "ClapTrap.hpp"
-#define FT_MAX_HP 100
-#define FT_ENERGY_PTS 100
-#define FT_ATTACK_DMG 30
+#include "Animal.hpp"
 
-class FragTrap : virtual public ClapTrap
+class Cat : public Animal
 {
-	protected:
-		FragTrap(void);
 	public:
-		FragTrap(std::string const &name);
-		FragTrap(FragTrap const &src);
-		~FragTrap(void);
-		FragTrap	&operator=(FragTrap const &src);
-		void		attack(std::string const &target);
-		void		highFivesGuys(void);
+		Cat(void);
+		Cat(Cat const &src);
+		~Cat(void);
+		Cat				&operator=(Cat const &src);
+		void	makeSound(void) const;
 };
 
 #endif
