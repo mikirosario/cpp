@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 16:52:44 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 16:09:01 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/13 20:02:41 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/13 22:29:59 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef BRAIN_H
+# define BRAIN_H
+
 #include <iostream>
+#define BRAIN_H_IDEAS 100
 
-int	main(void)
+class Brain
 {
-	Fixed	a;
-	Fixed	b(a);
-	Fixed	c;
+	private:
+		std::string 		ideas[BRAIN_H_IDEAS];
+		std::string const	no_idea;
+		size_t				ideas_held;
+		size_t				index;
+	public:
+		Brain(void);
+		Brain(Brain const &src);
+		~Brain(void);
+		Brain				&operator=(Brain const &src);
+		void 				setIdea(std::string const &idea);
+		std::string	const	&getIdea(void);
+};
 
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-
-	a.setRawBits(10);
-	std::cout << a.getRawBits() << std::endl;
-
-	c = a;
-	std::cout << c.getRawBits() << std::endl;
-
-	return (0);
-}
+#endif
