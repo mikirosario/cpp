@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:26:53 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 15:57:30 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/14 16:51:59 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ class Animal
 	protected:
 		std::string type;
 		bool		has_type;
-	protected:
+	public:
 		Animal(void);
 		Animal (std::string const &src);
 		Animal (Animal const &src);
-	public:
 		virtual ~Animal(void);
 		Animal				&operator=(Animal const &src);
-		virtual void		makeSound(void) const;
+		virtual void		makeSound(void) const = 0;
 		std::string const	&getType(void) const;	
 		virtual void		giveIdea(std::string const &src);
 		virtual void		getIdea(void) const;	

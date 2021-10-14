@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 14:21:54 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 16:56:19 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ int	main(void)
 	delete Firulais;
 	delete Felix;
 	delete Zombie;
-	//system ("leaks worldfire");
+	system ("leaks worldfire");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 15:57:05 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/14 16:56:27 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(void)
 	std::cout << "FIRULAIS AND FELIX CONSTRUCTOR CALLS:" << std::endl;
 	Animal* Firulais = new Dog();
 	Animal* Felix = new Cat();
+	//Animal* Zombie = new Animal();
 	std::cout << std::endl;
 
 	std::cout << "ANIMAL ARRAY CONSTRUCTOR CALLS:" << std::endl;
@@ -79,6 +80,6 @@ int	main(void)
 		delete animals[i];
 	delete Firulais;
 	delete Felix;
-	//system ("leaks worldfire");
+	system ("leaks worldfire");
 	return (0);
 }
