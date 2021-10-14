@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:32:26 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 14:08:41 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:34:35 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,21 @@ Animal::~Animal(void)
 		std::cout << DESTROY_MSG << TYPEFUL_CLASS << std::endl;
 }
 
+/*
+** A bit of dynamic typecast is used here so my main doesn't need a bajillion
+** typecasts. If ltype is a dog or cat and rtype is a dog or cat, we typecast
+** the pointer the current instance (this) to the source type and use the
+** copyBrain method to copy the brain.
+**
+** If ltype is a dog or cat but rtype is not, or if rtype is a dog or cat but
+** ltype is not, we reject the copy and just return a reference to the current
+** instance.
+** 
+** Personally I think the type variable should always correspond to the class,
+** so it shouldn't be copied. Type should only be defined on initialization, and
+** so should be const, but it isn't here to comply with the subject.
+*/
+
 Animal	&Animal::operator=(Animal const &src)
 {
 	Dog const *iamdog = dynamic_cast<Dog*>(this);
@@ -93,7 +108,7 @@ Animal	&Animal::operator=(Animal const &src)
 		std::cout << "Cannot copy brainy animal to brainless animal" << std::endl;
 		return (*this);
 	}
-	this->type = src.type;
+	//this->type = src.type;
 
 	std::cout << COPY_MSG;
 	if (checkEmptyString(this->type) || !this->type.compare(CLASS))
@@ -111,11 +126,21 @@ Animal	&Animal::operator=(Animal const &src)
 
 void	Animal::makeSound(void) const
 {
-	std::cout << "The ";
-	if (!this->has_type)
-		std::cout << CLASS << SOUND << std::endl;
+	Dog const *dog = dynamic_cast<Dog const*>(this);
+	Cat const *cat = dynamic_cast<Cat const*>(this);
+
+	if (dog != NULL)
+		dog->makeSound();
+	else if (cat != NULL)
+		cat->makeSound();
 	else
-		std::cout << TYPEFUL_CLASS << SOUND << std::endl;
+	{
+		std::cout << "The ";
+		if (!this->has_type)
+			std::cout << CLASS << SOUND << std::endl;
+		else
+			std::cout << TYPEFUL_CLASS << SOUND << std::endl;
+	}
 }
 
 std::string const	&Animal::getType(void) const

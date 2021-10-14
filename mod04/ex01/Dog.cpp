@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:36:08 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 12:08:01 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:35:48 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Dog::~Dog(void)
 
 Dog	&Dog::operator=(Dog const &src)
 {
-	this->type = src.type;
+	//this->type = src.type;
 	if (this->brain == NULL)
  		this->brain = new Brain();
  	if (this->brain != NULL)

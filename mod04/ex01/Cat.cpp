@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:19:50 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 12:15:16 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:36:34 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Cat::~Cat(void)
 
 Cat	&Cat::operator=(Cat const &src)
 {
-	this->type = src.type;
+	//this->type = src.type;
 	if (this->brain == NULL)
  		this->brain = new Brain();
  	if (this->brain != NULL)

@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:26:53 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 13:29:43 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:27:07 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define ANIMAL_H
 
 #include <iostream>
+
+/*
+** Type should really be const, so it always coincides with the class - that
+** would save a LOT of trouble, but... subject says it isn't, so... :p
+*/
 
 class Animal
 {

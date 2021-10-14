@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 14:10:05 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:21:54 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,21 @@ int	main(void)
 	*Felix = *animals[NUMBER_OF_ANIMALS - 1];
 	std::cout << "Firulais says: ";
 	Firulais->getIdea();
+	Firulais->makeSound();
 	std::cout << "Felix says: ";
 	Felix->getIdea();
+	Felix->makeSound();
 	std::cout << std::endl;
 	std::cout << "Copying Firulais to Felix." << std::endl;
 	*Felix = *Firulais;
+	std::cout << "Felix is still a Cat, but now has Firulais's ideas in its brain." << std::endl;
+	std::cout << std::endl;
 	std::cout << "Firulais says: ";
 	Firulais->getIdea();
+	Firulais->makeSound();
 	std::cout << "Felix says: ";
 	Felix->getIdea();
+	Felix->makeSound();
 	std::cout << std::endl;
 	std::cout << "Copying Firulais to Zombie." << std::endl;
 	*Zombie = *Firulais;
