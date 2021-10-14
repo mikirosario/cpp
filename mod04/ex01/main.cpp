@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 12:54:56 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 13:38:07 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,33 @@ int	main(void)
 	std::cout << std::endl;
 
 	std::cout << "IDEAS FROM ANIMAL ARRAY:" << std::endl;
-	((Dog *)animals[0])->giveIdea((std::string)"I ARE DOG.");
-	((Cat *)animals[NUMBER_OF_ANIMALS - 1])->giveIdea((std::string)"I ARE CAT.");
+	animals[0]->giveIdea((std::string)"I ARE DOG.");
+	animals[NUMBER_OF_ANIMALS - 1]->giveIdea((std::string)"I ARE CAT.");
 	std::cout << "First array animal says: ";
-	((Dog *)animals[0])->getIdea();
+	animals[0]->getIdea();
 	std::cout << "Last array animal says: ";
-	((Cat *)animals[NUMBER_OF_ANIMALS - 1])->getIdea();
+	animals[NUMBER_OF_ANIMALS - 1]->getIdea();
 	std::cout << "Firulais says: ";
-	((Dog *)Firulais)->getIdea();
+	Firulais->getIdea();
 	std::cout << "Felix says: ";
-	((Cat *)Felix)->getIdea();
+	Felix->getIdea();
 	std::cout << std::endl;
 
-	std::cout << "DEEP COPY TEST:" << std::endl;
+	std::cout << "DEEP COPY TESTS:" << std::endl;
 	std::cout << "Copying first array animal to Firulais and last array animal to Felix." << std::endl;
 	*Firulais = *animals[0];
 	*Felix = *animals[NUMBER_OF_ANIMALS - 1];
 	std::cout << "Firulais says: ";
-	((Dog *)Firulais)->getIdea();
+	Firulais->getIdea();
 	std::cout << "Felix says: ";
-	((Cat *)Felix)->getIdea();
-	// std::cout << "Copying Firulais to Felix." << std::endl;
-	// *Felix = *Firulais;
-	// std::cout << "Firulais says: ";
-	// Firulais->getIdea();
-	// std::cout << "Felix says: ";
-	// Felix->getIdea();
+	Felix->getIdea();
+	std::cout << std::endl;
+	std::cout << "Copying Firulais to Felix." << std::endl;
+	*Felix = *Firulais;
+	std::cout << "Firulais says: ";
+	Firulais->getIdea();
+	std::cout << "Felix says: ";
+	Felix->getIdea();
 	std::cout << std::endl;
 
 	std::cout << "DESTRUCTOR CALLS:" << std::endl;

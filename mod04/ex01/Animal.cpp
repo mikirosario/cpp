@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:32:26 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 12:53:08 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 13:35:24 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,24 @@ std::string const	&Animal::getType(void) const
 	return (this->type);
 }
 
+void	Animal::giveIdea(std::string const &src)
+{
+	Dog *dog = dynamic_cast<Dog*>(this);
+	Cat *cat = dynamic_cast<Cat*>(this);
 
+	if (dog != NULL)
+		dog->giveIdea(src);
+	else if (cat != NULL)
+		cat->giveIdea(src);
+}
+
+void	Animal::getIdea(void) const
+{
+	Dog const *dog = dynamic_cast<Dog const*>(this);
+	Cat const *cat = dynamic_cast<Cat const*>(this);
+
+	if (dog != NULL)
+		dog->getIdea();
+	else if (cat != NULL)
+		cat->getIdea();
+}
