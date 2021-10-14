@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:32:26 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 13:35:24 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:08:41 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,32 @@ Animal::~Animal(void)
 
 Animal	&Animal::operator=(Animal const &src)
 {
-	Dog const *dog = dynamic_cast<const Dog*>(&src);
-	Cat const *cat = dynamic_cast<const Cat*>(&src);
-	
-	if (dog != NULL)
+	Dog const *iamdog = dynamic_cast<Dog*>(this);
+	Cat const *iamcat = dynamic_cast<Cat*>(this);
+	Dog const *srcisdog = dynamic_cast<const Dog*>(&src);
+	Cat const *srciscat = dynamic_cast<const Cat*>(&src);	;
+	if (iamdog != NULL || iamcat != NULL)
 	{
-		std::cout << "PERRO" << std::endl;
-		((Dog *)this)->copyBrain(dog->getBrain());
+		if (srcisdog != NULL)
+		{
+			std::cout << "PERRO" << std::endl;
+			((Dog *)this)->copyBrain(srcisdog->getBrain());
+		}
+		else if (srciscat != NULL)
+		{
+			std::cout << "GATO" << std::endl;
+			((Cat *)this)->copyBrain(srciscat->getBrain());
+		}
+		else
+		{
+			std::cout << "Cannot copy brainless animal to brainy animal" << std::endl;
+			return (*this);
+		}
 	}
-	else if (cat != NULL)
+	else if (srciscat != NULL || srcisdog != NULL)
 	{
-		std::cout << "GATO" << std::endl;
-		((Cat *)this)->copyBrain(cat->getBrain());
+		std::cout << "Cannot copy brainy animal to brainless animal" << std::endl;
+		return (*this);
 	}
 	this->type = src.type;
 

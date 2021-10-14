@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 13:38:07 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 14:10:05 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(void)
 	std::cout << "FIRULAIS AND FELIX CONSTRUCTOR CALLS:" << std::endl;
 	Animal* Firulais = new Dog();
 	Animal* Felix = new Cat();
+	Animal* Zombie = new Animal();
 	std::cout << std::endl;
 
 	std::cout << "ANIMAL ARRAY CONSTRUCTOR CALLS:" << std::endl;
@@ -51,7 +52,7 @@ int	main(void)
 	Felix->getIdea();
 	std::cout << std::endl;
 
-	std::cout << "DEEP COPY TESTS:" << std::endl;
+	std::cout << "DEEP COPY AND DYNAMIC CAST TESTS:" << std::endl;
 	std::cout << "Copying first array animal to Firulais and last array animal to Felix." << std::endl;
 	*Firulais = *animals[0];
 	*Felix = *animals[NUMBER_OF_ANIMALS - 1];
@@ -67,12 +68,19 @@ int	main(void)
 	std::cout << "Felix says: ";
 	Felix->getIdea();
 	std::cout << std::endl;
+	std::cout << "Copying Firulais to Zombie." << std::endl;
+	*Zombie = *Firulais;
+	std::cout << std::endl;
+	std::cout << "Copying Zombie to Firulais." << std::endl;
+	*Firulais = *Zombie;
+	std::cout << std::endl;
 
 	std::cout << "DESTRUCTOR CALLS:" << std::endl;
 	for (i = 0; i < NUMBER_OF_ANIMALS; i++)
 		delete animals[i];
 	delete Firulais;
 	delete Felix;
+	delete Zombie;
 	//system ("leaks worldfire");
 	return (0);
 }
