@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 12:36:41 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 12:54:56 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	main(void)
 
 	std::cout << "DEEP COPY TEST:" << std::endl;
 	std::cout << "Copying first array animal to Firulais and last array animal to Felix." << std::endl;
-	Firulais = animals[0];
-	Felix = animals[NUMBER_OF_ANIMALS - 1];
+	*Firulais = *animals[0];
+	*Felix = *animals[NUMBER_OF_ANIMALS - 1];
 	std::cout << "Firulais says: ";
 	((Dog *)Firulais)->getIdea();
 	std::cout << "Felix says: ";
@@ -70,8 +70,8 @@ int	main(void)
 	std::cout << "DESTRUCTOR CALLS:" << std::endl;
 	for (i = 0; i < NUMBER_OF_ANIMALS; i++)
 		delete animals[i];
-	//delete Firulais;
-	//delete Felix;
+	delete Firulais;
+	delete Felix;
 	//system ("leaks worldfire");
 	return (0);
 }

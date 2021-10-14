@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:32:26 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/14 12:17:42 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/14 12:53:08 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,15 @@ Animal	&Animal::operator=(Animal const &src)
 	Cat const *cat = dynamic_cast<const Cat*>(&src);
 	
 	if (dog != NULL)
+	{
+		std::cout << "PERRO" << std::endl;
 		((Dog *)this)->copyBrain(dog->getBrain());
+	}
 	else if (cat != NULL)
+	{
+		std::cout << "GATO" << std::endl;
 		((Cat *)this)->copyBrain(cat->getBrain());
+	}
 	this->type = src.type;
 
 	std::cout << COPY_MSG;
