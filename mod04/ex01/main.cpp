@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:25:27 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/13 23:03:42 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:36:41 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,39 @@ int	main(void)
 	std::cout << std::endl;
 
 	std::cout << "IDEAS FROM ANIMAL ARRAY:" << std::endl;
-	animals[0]->giveIdea((std::string)"I ARE DOG.");
-	animals[NUMBER_OF_ANIMALS - 1]->giveIdea((std::string)"I ARE CAT.");
+	((Dog *)animals[0])->giveIdea((std::string)"I ARE DOG.");
+	((Cat *)animals[NUMBER_OF_ANIMALS - 1])->giveIdea((std::string)"I ARE CAT.");
 	std::cout << "First array animal says: ";
-	animals[0]->getIdea();
+	((Dog *)animals[0])->getIdea();
 	std::cout << "Last array animal says: ";
-	animals[NUMBER_OF_ANIMALS - 1]->getIdea();
+	((Cat *)animals[NUMBER_OF_ANIMALS - 1])->getIdea();
 	std::cout << "Firulais says: ";
-	Firulais->getIdea();
+	((Dog *)Firulais)->getIdea();
 	std::cout << "Felix says: ";
-	Felix->getIdea();
+	((Cat *)Felix)->getIdea();
 	std::cout << std::endl;
 
 	std::cout << "DEEP COPY TEST:" << std::endl;
 	std::cout << "Copying first array animal to Firulais and last array animal to Felix." << std::endl;
-	*Firulais = *animals[0];
-	*Felix = *animals[NUMBER_OF_ANIMALS - 1];
+	Firulais = animals[0];
+	Felix = animals[NUMBER_OF_ANIMALS - 1];
 	std::cout << "Firulais says: ";
-	Firulais->getIdea();
+	((Dog *)Firulais)->getIdea();
 	std::cout << "Felix says: ";
-	Felix->getIdea();
-	std::cout << "Copying Firulais to Felix." << std::endl;
-	*Felix = *Firulais;
-	std::cout << "Firulais says: ";
-	Firulais->getIdea();
-	std::cout << "Felix says: ";
-	Felix->getIdea();
+	((Cat *)Felix)->getIdea();
+	// std::cout << "Copying Firulais to Felix." << std::endl;
+	// *Felix = *Firulais;
+	// std::cout << "Firulais says: ";
+	// Firulais->getIdea();
+	// std::cout << "Felix says: ";
+	// Felix->getIdea();
 	std::cout << std::endl;
 
 	std::cout << "DESTRUCTOR CALLS:" << std::endl;
 	for (i = 0; i < NUMBER_OF_ANIMALS; i++)
 		delete animals[i];
-	delete Firulais;
+	//delete Firulais;
 	//delete Felix;
-	system ("leaks worldfire");
+	//system ("leaks worldfire");
 	return (0);
 }

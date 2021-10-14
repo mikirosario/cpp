@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:26:53 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/13 23:15:17 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/14 11:31:56 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,20 @@
 # define ANIMAL_H
 
 #include <iostream>
-#include "Brain.hpp"
 
 class Animal
 {
-	private:
-		Brain	*brain;
 	protected:
 		std::string type;
-		bool		has_name;
-		void		setBrain(void);
-		void		deleteBrain(void);
-		void		copyBrain(Brain const &src);
-		Brain const	&getBrain(void) const;
+		bool		has_type;
 	public:
 		Animal(void);
 		Animal (std::string const &src);
 		Animal (Animal const &src);
 		virtual ~Animal(void);
-		virtual Animal		&operator=(Animal const &src);
+		Animal				&operator=(Animal const &src);
 		virtual void		makeSound(void) const;
-		std::string const	&getType(void) const;
-		void				giveIdea(std::string const &src);
-		void				getIdea(void) const;
-		
+		std::string const	&getType(void) const;		
 };
 
 #endif
