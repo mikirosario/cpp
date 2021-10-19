@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 22:43:15 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 04:30:12 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 04:36:21 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Character : public ICharacter
 		Character(Character const &src);
 		~Character();
 		Character	&operator=(Character const &src);
-		ICharacter	&operator=(ICharacter &src);
+		ICharacter	&operator=(ICharacter const &src);
 	//Interface (Pure Virtual)
 		std::string const &getName(void) const;
 		void equip(AMateria* m);

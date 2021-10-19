@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 22:53:59 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 04:30:08 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 04:36:45 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ Character			&Character::operator=(Character const &src)
 ** There is probably a prettier way to do this. xD
 */
 
-ICharacter	&Character::operator=(ICharacter &src)
+ICharacter	&Character::operator=(ICharacter const &src)
 {
-	return ((*this = *(Character *)&src));
+	return ((*this = *(Character const *)&src));
 }
 
 std::string const	&Character::getName(void) const

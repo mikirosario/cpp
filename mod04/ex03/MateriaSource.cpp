@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:53:51 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 04:30:37 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 04:38:56 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ MateriaSource	&MateriaSource::operator=(MateriaSource const &src)
 {
 	this->replace_known_materia(src);
 	return (*this);
+}
+
+/*
+** A bit of pointer voodoo to get the assignation to behave properly. xD
+**
+** Yes, that is a dereferenced pointer cast on the address of a reference.
+**
+** There is probably a prettier way to do this. xD
+*/
+
+IMateriaSource	&MateriaSource::operator=(IMateriaSource const &src)
+{
+	return ((*this = *(MateriaSource const *)&src));
 }
 
 void			MateriaSource::learnMateria(AMateria *materia)
