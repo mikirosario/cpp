@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 22:53:59 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 02:40:02 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 04:30:08 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,26 @@ Character::~Character()
 
 Character			&Character::operator=(Character const &src)
 {
-	this->_Name = (src._Name);
-	for (size_t i = 0; i < MAX_MATERIA; i++)
-		this->_inventory[i] = src._inventory[i];
+	if (this != &src)
+	{
+		this->_Name = src._Name;
+		for (size_t i = 0; i < MAX_MATERIA; i++)
+			this->_inventory[i] = src._inventory[i];
+	}
 	return (*this);
+}
+
+/*
+** A bit of pointer voodoo to get the assignation to behave properly. xD
+**
+** Yes, that is a dereferenced pointer cast on the address of a reference.
+**
+** There is probably a prettier way to do this. xD
+*/
+
+ICharacter	&Character::operator=(ICharacter &src)
+{
+	return ((*this = *(Character *)&src));
 }
 
 std::string const	&Character::getName(void) const

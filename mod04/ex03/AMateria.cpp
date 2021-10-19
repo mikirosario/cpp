@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 16:27:20 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 01:56:11 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 04:30:04 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ AMateria::~AMateria(void)
 {
 }
 
-AMateria	&AMateria::operator=(AMateria const &src)
+AMateria	&AMateria::operator=(AMateria const &src) //?? assignment between unlike types makes no sense
 {
 	(void)src;
 	return (*this);
-	//this->_type = src._type; //?? assignment between unlike types makes no sense
 }
 
 std::string const	&AMateria::getType(void) const
