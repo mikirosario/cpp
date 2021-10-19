@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:45:11 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 05:00:46 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 05:04:34 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ class MateriaSource : public IMateriaSource
 		IMateriaSource	&operator=(IMateriaSource const &src);
 		void 			learnMateria(AMateria*);
 		AMateria* 		createMateria(std::string const & type);
-
-		//void				replace_known_materia(AMateria * const (&src)[MAX_KNOWN_MATERIA]); //src is a constant reference to an array of AMateria pointers of size MAX_KNOWN_MATERIA
 };
 
 #endif

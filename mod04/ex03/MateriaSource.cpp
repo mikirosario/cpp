@@ -6,13 +6,13 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:53:51 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 04:38:56 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/19 05:05:09 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
-void	MateriaSource::replace_known_materia(MateriaSource const &src)
+void			MateriaSource::replace_known_materia(MateriaSource const &src)
 {
 	size_t i;
 
@@ -30,7 +30,6 @@ void	MateriaSource::replace_known_materia(MateriaSource const &src)
 			this->_known_materia[i] = src._known_materia[i]->clone();
 	}
 }
-
 
 MateriaSource::MateriaSource(void) : _known_materia()
 {
