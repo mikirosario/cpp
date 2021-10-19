@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 05:52:46 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/12 08:20:53 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:42:26 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	destroy_msg(std::string &name)
 	std::cout << CLASS_NAME << name << " destroyed." << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string const &name) : ClapTrap(name + "_clap_name"), Name(name)
+DiamondTrap::DiamondTrap(std::string const &name) : ClapTrap(name + "_clap_name"), ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), Name(name)
 {
 	this->Hitpoints = FT_MAX_HP;
 	this->Energy_points = ST_ENERGY_PTS;

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 16:24:35 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/19 02:04:05 by mrosario         ###   ########.fr       */
+/*   Created: 2021/10/18 18:29:08 by mrosario          #+#    #+#             */
+/*   Updated: 2021/10/19 02:41:45 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_H
-# define AMATERIA_H
+#ifndef ICHARACTER_H
+# define ICHARACTER_H
 
+//#include "AMateria.hpp" cyclical reference leads compiler to believe there
+//there are two use methods in AMateria??
 #include <iostream>
-#include "ICharacter.hpp"
 
-class AMateria
+class AMateria;
+
+class ICharacter
 {
-	protected:
-		std::string	const _type;
-		AMateria(void);
 	public:
-		AMateria(std::string const &type);
-		AMateria(AMateria const &src);
-		virtual ~AMateria(void);
-		AMateria	&operator=(AMateria const &src);
-		std::string const	&getType(void) const;
-		virtual AMateria 	*clone(void) const = 0;
-		virtual void		use(ICharacter &target);
+		virtual ~ICharacter() {};
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter &target) = 0;
 };
 
 #endif

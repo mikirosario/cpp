@@ -6,11 +6,11 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/13 16:42:32 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/19 02:05:08 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = polymorphism
+NAME = ff42
 
 SRCDIR = .
 
@@ -22,8 +22,8 @@ RST = \e[0m
 
 CXX = clang++
 
-SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/Animal.cpp $(SRCDIR)/Dog.cpp \
-$(SRCDIR)/Cat.cpp $(SRCDIR)/WrongAnimal.cpp $(SRCDIR)/WrongCat.cpp
+SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/AMateria.cpp $(SRCDIR)/Character.cpp \
+$(SRCDIR)/Cure.cpp $(SRCDIR)/Ice.cpp $(SRCDIR)/MateriaSource.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
