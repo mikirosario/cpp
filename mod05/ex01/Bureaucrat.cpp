@@ -6,11 +6,12 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 20:48:04 by miki              #+#    #+#             */
-/*   Updated: 2021/10/20 20:58:52 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/20 21:16:14 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /*
 ** Some study notes about throw:
@@ -141,6 +142,20 @@ void				Bureaucrat::decrementGrade(void) throw(Bureaucrat::GradeTooHighException
 {
 	checkException(this->_grade + 1);
 	this->_grade += 1;
+}
+
+void				Bureaucrat::signForm(Form & form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signs " << form.getName() << "." << std::endl;
+	}
+	catch (Form::GradeTooLowException & e)
+	{
+		std::cerr << this->_name << " cannot sign " << form.getName() << " due to the following reason: " << std::endl;
+		std::cerr << e.what() << std::endl;
+	}		
 }
 
 /* Global Functions */
