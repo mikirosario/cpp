@@ -3,53 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 20:48:04 by miki              #+#    #+#             */
-/*   Updated: 2021/10/19 22:17:25 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/20 18:56:22 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+/* Local Functions */
+
+/*
+** Some study notes about throw:
+**
+** Throw copy-initializes the class passed as parameter. In this case, the class
+** is auto-instantiated by the default c++ constructor, as it has no constructor
+** override. The two custom exception classes are GradeTooHighException and
+** GradeTooLowException.
+**
+** Since GradeTooHighException and GradeTooLowException inherit from
+** std::exception, that class is likewise instantiated as the parent object.
+**
+** Our two child classes of the std::exception object contain a what() override,
+** which will override the default what() member function in std::exception.
+**
+** With the exception object instantiated, we return to the next catch block that
+** can receive that object as a parameter (that is, one that accepts an instance
+** of the exception object, or a reference to it, as an argument).
+**
+** In this case, that would be any object that could receive a std::exception,
+** or a GradeTooHighException / GradeTooLowException (which are subclasses of
+** std::exception).
+**
+** The std::exception::what() function is virtual, so polymorphism applies.
+** Thus, any reference to what(), even a reference to the parent function's
+** what() (std::exception e.what()) will use a virtual table to divert to the
+** child function's what() override and return the desired message.
+*/
+
+static void			checkException(unsigned const int & grade) throw(Bureaucrat::GradeTooHighException,Bureaucrat::GradeTooLowException)
+{
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException(); //Throw exception and return to next catch block
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+}
+
 /* Constructors and Destructor */
 Bureaucrat::Bureaucrat(void) : _name("UNDEFINED"), _grade(1)
 {
+	std::cout << GRN << "Constructed Bureaucrat" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string const &name, unsigned int const grade) : _name(name), _grade(grade)
 {
 	checkException(this->_grade);
+	std::cout << GRN << "Constructed Bureaucrat" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src._name), _grade(src._grade)
 {
 	checkException(this->_grade);
+	std::cout << GRN << "Constructed Bureaucrat" << RESET << std::endl;
 }
 
 Bureaucrat::~Bureaucrat(void)
 {
-}
-
-/* Local Functions */
-static void			checkException(unsigned const int & grade)
-{
-	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+	std::cout << GRN << "Destroyed Bureaucrat" << RESET << std::endl;
 }
 
 /* Class Member Functions */
 //Exceptions
-char const *		Bureaucrat::GradeTooLowException::what() const throw()
+char const *		Bureaucrat::GradeTooLowException::what() const throw() //override what function from exception class
 {
-	return ("Grade Too Low");
+	return (RED"Grade Too Low Exception"RESET); //what function returns a const char * to a string. now it returns this message.
 }
 
 char const *		Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade Too High");
+	return (RED"Grade Too High Exception"RESET);
 }
 
 //Overloads
@@ -89,7 +122,7 @@ unsigned int		Bureaucrat::operator--(int)
 	return (grade);
 }
 
-//Methods
+//Other Member Functions
 std::string const &	Bureaucrat::getName(void) const
 {
 	return (this->_name);
@@ -102,18 +135,18 @@ unsigned int		Bureaucrat::getGrade(void) const
 
 void				Bureaucrat::incrementGrade(void)
 {
+	checkException(this->_grade - 1);
 	this->_grade -= 1;
-	checkException(this->_grade);
 }
 
 void				Bureaucrat::decrementGrade(void)
 {
+	checkException(this->_grade + 1);
 	this->_grade += 1;
-	checkException(this->_grade);
 }
 
 /* Global Functions */
 std::ostream &		operator<<(std::ostream & output, Bureaucrat const & bureaucrat)
 {
-	return (output << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade());
+	return (output << GRN << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << RESET);
 }

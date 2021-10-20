@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 20:35:45 by miki              #+#    #+#             */
-/*   Updated: 2021/10/19 22:09:44 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/20 18:55:08 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <iostream>
 #include <ostream>
 #include <exception>
+
+#define RED "\e[1;31m"
+#define GRN "\e[1;32m"
+#define RESET "\e[0m"
 
 class Bureaucrat
 {
@@ -35,11 +39,11 @@ class Bureaucrat
 		void				incrementGrade(void);
 		void				decrementGrade(void);
 		std::string const & getName(void) const;
-		unsigned int		getGrade(void) const; //variable copy, so you can do chained arithmetic with it?
+		unsigned int		getGrade(void) const; //variable copy, so you can do chained arithmetic with it
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				char const * what() const throw();
+				char const * what() const throw(); //override what() function from exception class
 		};
 		class GradeTooLowException : public std::exception
 		{
