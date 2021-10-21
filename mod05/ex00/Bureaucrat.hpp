@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 20:35:45 by miki              #+#    #+#             */
-/*   Updated: 2021/10/20 21:16:37 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:12:55 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 class Bureaucrat
 {
 	private:
-		std::string		_name;
-		unsigned int	_grade;
+		std::string const	_name;
+		unsigned int		_grade;
 		Bureaucrat(void); //Shouldn't be undefined, right?
 	public:
 		class GradeTooHighException : public std::exception

@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 20:48:04 by miki              #+#    #+#             */
-/*   Updated: 2021/10/20 20:58:52 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:17:39 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char const *		Bureaucrat::GradeTooHighException::what() const throw()
 //Overloads
 Bureaucrat &		Bureaucrat::operator=(Bureaucrat const &src)
 {
-	this->_name = src._name;
 	this->_grade = src._grade;
 	return (*this);
 }
