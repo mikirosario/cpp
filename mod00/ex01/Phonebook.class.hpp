@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:15:37 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/03 17:55:10 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/22 10:17:42 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class	Phonebook {
 		};
 };
 
-int		cin_buff_overflow(int bufsize);
+int			cin_buff_overflow(int bufsize);
+void		ft_bzero(void *ptr, size_t size);
 
 #endif

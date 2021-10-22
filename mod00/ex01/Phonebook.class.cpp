@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:23:19 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/03 17:59:21 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/22 10:15:07 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static bool	isNumber(char *str)
 **
 ** //THE WHILE LOOP\\
 **
-** - The bzero function is used to zero the buffer at the start of every loop.
+** - The ft_bzero function is used to zero the buffer at the start of every loop.
 ** - Then we display the input message associated with the current field (as
 ** defined by the x variable).
 ** - Then we use cin.getline and our buffer to wait for user input and retrieve
@@ -112,7 +112,7 @@ void	Phonebook::addContact(void)
 		index = 0;
 	while (field < TOTAL_FIELD_NUM)
 	{
-		bzero(buff, FIELD_BUFF_SIZE);
+		ft_bzero(buff, FIELD_BUFF_SIZE);
 		Contact::showFieldPrompt(field);
 		std::cin.getline(buff, FIELD_BUFF_SIZE);
 		if (cin_buff_overflow(FIELD_BUFF_SIZE))
@@ -217,7 +217,7 @@ int		Phonebook::_prompt_for_contact_index(void)
 
 	while (1)
 	{
-		bzero(buff, Phonebook::_index_buf_size);
+		ft_bzero(buff, Phonebook::_index_buf_size);
 		std::cout << "Enter an index #: ";
 		std::cin.getline(buff, Phonebook::_index_buf_size);
 		if (cin_buff_overflow(Phonebook::_index_buf_size))

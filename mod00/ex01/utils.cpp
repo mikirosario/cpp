@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 17:31:46 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/03 15:50:09 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/22 10:17:30 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <limits>
 
 /*
 ** This function is for buffer overflow handling.
@@ -61,4 +62,10 @@ int		cin_buff_overflow(int bufsize)
 		return (1);
 	}
 	return (0);
+}
+
+void	ft_bzero(void *ptr, size_t size)
+{
+	for (size_t i = 0; i < size; i++)
+		reinterpret_cast<char *>(ptr)[i] = 0;
 }

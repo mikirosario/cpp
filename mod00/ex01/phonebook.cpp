@@ -40,7 +40,7 @@ int	inputloop (Phonebook *phonebook)
 
 	while (1)
 	{
-		bzero(buff, COMMAND_BUFF_SIZE);
+		ft_bzero(buff, COMMAND_BUFF_SIZE);
 		std::cout << "State your command, master [ADD, SEARCH, EXIT]: ";
 		std::cin.getline(buff, COMMAND_BUFF_SIZE);
 		cin_buff_overflow(COMMAND_BUFF_SIZE);
