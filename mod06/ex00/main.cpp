@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 22:01:11 by miki              #+#    #+#             */
-/*   Updated: 2021/10/22 12:54:32 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/22 15:41:47 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	pseudoNumberType(std::string const & str)
 	std::string	const pseudo_lits[4] = {"inff","nanf","inf","nan"};
 	//bool type = 0; //0 == none, 2 == float, 3 == double
 
-	for (size_t i = 0; i < 3; ++i)
+	for (size_t i = 0; i < 4; ++i)
 		if (str.compare(pseudo_lits[i]) == 0)
-			return (i < 2 ? 2 : 3);
-	return (0);
+			return (i < 2 ? t_float : t_double);
+	return (t_not_a_number);
 }
 
 /*
@@ -74,16 +74,16 @@ int		numberType(std::string const & str)
 	{
 	}
 	if (str[i] == '\0') //isInt
-		return (1);
+		return (t_int);
 	else if (str[i] == '.') //a single point is OK
 		++i;
 	for ( ; std::isdigit(str[i]); ++i) //digits after a point are OK
 	{
 	}
 	if (str[i] == '\0') //isDouble
-		type = 2;
+		type = t_double;
 	else if (str[i] == 'f' && str[i + 1] == '\0') //isFloat
-		type = 3;
+		type = t_float;
 	return (type);
 }
 
@@ -91,8 +91,13 @@ int		numberType(std::string const & str)
 
 bool	skipSpaces(std::string::iterator & index)
 {
+	int no_op = 0;
 	for ( ; std::isspace(*index); ++index ) //dereferencing iterator not doing what i assumed??
 	{
+		//DEBUG CODE
+		if (1)
+			no_op++;
+		//DEBUG CODE
 	}
 	return (true);
 }
@@ -104,8 +109,12 @@ bool	skipSpaces(std::string::iterator & index)
 bool	determineSign(std::string::iterator & index)
 {
 	int global_sign = 0;
-	for (int sign; skipSpaces(index) || (sign = isSign(*index)); ++index)
+	skipSpaces(index);
+	for (int sign; (sign = isSign(*index)); ++index)
+	{
 			global_sign += sign;
+			skipSpaces(index);
+	}
 	return ((global_sign < 0));
 }
 
