@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miki <miki@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/22 12:49:39 by miki             ###   ########.fr        #
+#    Updated: 2021/10/22 21:30:51 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RST = \e[0m
 
 CXX = clang++
 
-SRCFILES = $(SRCDIR)/main.cpp
+SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/try_conversion.cpp $(SRCDIR)/detect_overflow.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 

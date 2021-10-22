@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 22:01:11 by miki              #+#    #+#             */
-/*   Updated: 2021/10/22 16:28:58 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/22 21:30:26 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iterator>
 #include <cstdlib>
 #include <string>
+#include <iomanip>
 
 int		isSign(char const & c)
 {
@@ -144,6 +145,16 @@ bool	determineSign(std::string::iterator & index)
 	return ((global_sign < 0));
 }
 
+int		detectCharType(std::string const & str)
+{
+	size_t	i = 0;
+	if (str[i++] == '\'')
+		if (str[++i] == '\'')
+			if (str[++i] == '\0')
+				return (t_char);
+	return (0);
+}
+
 /*
 ** This function will parse the string passed as arg. If it is a valid number,
 ** its type will be returned. If not, 0 will be returned.
@@ -161,51 +172,111 @@ bool	determineSign(std::string::iterator & index)
 int							parse_argument(std::string & arg)
 {
 	std::string::iterator begin = arg.begin();
-	std::string::iterator index = arg.begin();
+	std::string::iterator index;
 	//std::string::iterator end = arg.end();
 	char	sign;
 	int		type;
 
-	sign = determineSign(index) ? '-' : '+';;
-	arg.erase(begin, index); //garbage disposal
 	index = backSkipSpaces(arg);
 	arg.erase(index, arg.end()); //erase trailing spaces
-	if ((type = pseudoNumberType(arg)) || (type = numberType(arg)))
-		arg.insert(arg.begin(), sign); //replace any preceding signs with single sign
+	index = begin;
+	skipSpaces(index); //erase preceding spaces
+	arg.erase(begin, index);
+	type = detectCharType(arg);
+	if (type != t_char)
+	{
+		sign = determineSign(index) ? '-' : '+';
+		arg.erase(begin, index); //garbage disposal
+		if ((type = pseudoNumberType(arg)) || (type = numberType(arg)))
+		{
+			if (isOverflow(arg, type, sign))
+			{
+				type = 0;
+				std::cout << "Your number is too big to fit in the specified type. Choose a bigger type or write a smaller number." << std::endl;
+			}
+			else
+				arg.insert(arg.begin(), sign); //replace any preceding signs with single sign
+		}
+	}
 	return (type);
+}
+
+bool		badBit(char const & flag, int const & bit)
+{
+	return (((flag >> bit) & 1));
+}
+
+void		printresults(t_conversion_data & data)
+{
+	//data indicating whether int, float or chr conversions failed are stored in flag
+	std::cout << std::fixed << std::setprecision(8)
+	<< "Char: ";
+	if (badBit(data.flag, t_char))
+		std::cout << IMPOSSIBLE;
+	else if (!std::isprint(data.chr))
+		std::cout << UNPRINTABLE;
+	else
+		std::cout << data.chr;
+	NEWLN;
+	std::cout << "Int: ";
+	if (badBit(data.flag, t_int))
+		std::cout << IMPOSSIBLE;
+	else
+		std::cout << data.numi;
+	NEWLN;
+	std::cout << "Float: ";
+	if (badBit(data.flag, t_float))
+		std::cout << IMPOSSIBLE;
+	else
+		std::cout << data.numf;
+	NEWLN;
+	std::cout << "Double: " << data.numd << std::endl;
 }
 
 int			main(int argc, char const **argv) //My first implicit cast xD
 {	
-	std::string	arg;
-	int			type;
-	int			numi =0;
-	float		numf =0;
-	double		numd =0;
+	std::string			arg;
+	t_conversion_data	data;
+
+	std::memset(&data, 0, sizeof(t_conversion_data));
 
 	if (argc != 2 || *argv[1] == '\0')
 	{
-		std::cerr << "Pass a single number as a parameter, (i.e. 42)" << std::endl;
+		std::cerr << "Pass a single character enclosed in simple commas ' ' or a number as a parameter, (i.e. 42, 'y')" << std::endl;
 		return (0);
 	}
 	arg = argv[1];
-	type = parse_argument(arg);
-	switch (type)
+	data.type = parse_argument(arg);
+	switch (data.type)
 	{
 		case t_int:
-			numi = std::atoi(arg.c_str()); //stoi is banned, because it's c++11 :p
+			data.numi = std::atoi(arg.c_str()); //stoi is banned, because it's c++11 :p
+			data.numf = static_cast<float>(data.numi);
+			data.numd = static_cast<double>(data.numi);
+			tryConvertToChar(data.chr, data.numi, data.flag);
 			break;
 		case t_float:
-			numf = std::atof(arg.c_str());
+			data.numf = std::atof(arg.c_str());
+			data.numd = static_cast<double>(data.numf);
+			tryConvertToChar(data.chr, data.numf, data.flag);
+			tryConvertToInt(data.numi, data.numf, data.flag);
 			break;
 		case t_double:
-			numd = std::atof(arg.c_str());
+			data.numd = std::atof(arg.c_str());
+			tryConvertToChar(data.chr, data.numd, data.flag);
+			tryConvertToInt(data.numi, data.numd, data.flag);
+			tryConvertToFloat(data.numf, data.numd, data.flag);
+			break;
+		case t_char:
+			data.chr = arg[1];
+			data.numi = static_cast<int>(arg[1]);
+			data.numf = static_cast<float>(arg[1]);
+			data.numd = static_cast<double>(arg[1]);
 			break;
 		default:
-			std::cerr << "That was not a number." << std::endl;
+			std::cerr << "That was not a number or valid character." << std::endl;
 			return (1);
 	}
-	//DEBUG TEST
-	std::cout << "Int: " << numi << ", Float: " << numf << ", Double: " << numd << std::endl;
+	printresults(data);
 	return (0);
 }
