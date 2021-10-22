@@ -6,7 +6,7 @@
 /*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 22:01:11 by miki              #+#    #+#             */
-/*   Updated: 2021/10/22 15:41:47 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/22 16:28:58 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,47 @@ int		numberType(std::string const & str)
 }
 
 
+/*
+** Skips all spaces in a string pointed to by an iterator, advancing the
+** iterator. Assumes strings are null-terminated!
+*/
 
-bool	skipSpaces(std::string::iterator & index)
+void	skipSpaces(std::string::iterator & index)
 {
-	int no_op = 0;
-	for ( ; std::isspace(*index); ++index ) //dereferencing iterator not doing what i assumed??
+	for ( ; std::isspace(*index); ++index )
 	{
-		//DEBUG CODE
-		if (1)
-			no_op++;
-		//DEBUG CODE
 	}
-	return (true);
+}
+
+
+/*
+** This function skips all spaces at the end of a string, starting from the
+** penultimate character, and returns an iterator pointing to the first space
+** at the end of the string.
+*/
+
+std::string::iterator	backSkipSpaces(std::string & str)
+{
+	std::string::iterator	index = str.end();
+	std::string::iterator	begin = str.begin();
+	if (index == begin)
+		return (index);
+	else
+		--index;
+	for ( ; std::isspace(*index) ; --index )
+		if (index == begin)
+			return (index);
+	return (index + 1);
 }
 
 /*
+** This function will determine the sign of a literal number by examining the
+** part of the string before the number.
+**
+** For every '+' sign a number will be considered more positive, and for every
+** '-' sign it will be considered more negative. Unsigned numbers are considered
+** positive.
+**
 ** Return value 1 == negative sign; return value 0 == positive sign.
 */
 
@@ -122,10 +148,11 @@ bool	determineSign(std::string::iterator & index)
 ** This function will parse the string passed as arg. If it is a valid number,
 ** its type will be returned. If not, 0 will be returned.
 **
-** Multiple '+' and '-' signs will be tallied and replaced with a final sign.
+** Multiple '+' and '-' signs will be tallied and replaced with a single sign.
 **
-** Spaces before the number will be ignored.
+** Spaces before or after the number will be ignored.
 **
+** 
 ** Valid INT:		#
 ** Valid DOUBLES:	#.# .#
 ** Valid FLOATS:	#.#f .#f #f
@@ -141,9 +168,10 @@ int							parse_argument(std::string & arg)
 
 	sign = determineSign(index) ? '-' : '+';;
 	arg.erase(begin, index); //garbage disposal
-	
+	index = backSkipSpaces(arg);
+	arg.erase(index, arg.end()); //erase trailing spaces
 	if ((type = pseudoNumberType(arg)) || (type = numberType(arg)))
-		arg.insert(arg.begin(), sign); //replace signs with final sign
+		arg.insert(arg.begin(), sign); //replace any preceding signs with single sign
 	return (type);
 }
 
