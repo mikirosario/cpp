@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miki <miki@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/23 13:17:10 by miki             ###   ########.fr        #
+#    Updated: 2021/10/23 20:29:29 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = dynamic
+NAME = template
 
 SRCDIR = .
 
