@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 22:01:11 by miki              #+#    #+#             */
-/*   Updated: 2021/10/22 21:30:26 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/23 03:39:29 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scalar_conversion.hpp"
 #include <iterator>
 #include <cstdlib>
+#include <cstring> //need this for memset at home on Linux
 #include <string>
 #include <iomanip>
 

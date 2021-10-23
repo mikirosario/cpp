@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   detect_overflow.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 20:56:26 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/23 00:42:41 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/23 03:39:04 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scalar_conversion.hpp"
+#include <climits>
 #include <sstream>
 #include <iomanip>
 
