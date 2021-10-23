@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 22:01:11 by miki              #+#    #+#             */
-/*   Updated: 2021/10/23 03:39:29 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/23 17:24:22 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scalar_conversion.hpp"
-#include <iterator>
-#include <cstdlib>
-#include <cstring> //need this for memset at home on Linux
-#include <string>
+//#include <iterator>
+//#include <cstdlib>
+#ifdef __linux__
+# include <cstring> //need this for memset at home on Linux
+#endif
+//#include <string>
 #include <iomanip>
 
 int		isSign(char const & c)
@@ -174,7 +176,6 @@ int							parse_argument(std::string & arg)
 {
 	std::string::iterator begin = arg.begin();
 	std::string::iterator index;
-	//std::string::iterator end = arg.end();
 	char	sign;
 	int		type;
 

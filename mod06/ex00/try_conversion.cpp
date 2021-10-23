@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   try_conversion.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:50:52 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/23 03:38:37 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/23 17:20:49 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scalar_conversion.hpp"
-#include <climits>
+#ifdef __linux__
+# include <climits> //needed to compile at home on Linux
+#endif
 
 void	tryConvertToChar(char & c, int & n, char & flag)
 {

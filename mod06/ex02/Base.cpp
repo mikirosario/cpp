@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 02:26:06 by miki              #+#    #+#             */
-/*   Updated: 2021/10/23 03:39:44 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/23 17:40:06 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 #include <iostream>
-
+#include <unistd.h>
 
 Base::~Base(void)
 {
@@ -29,6 +29,7 @@ Base *	generate(void)
 		C_class
 	};
 
+	usleep(50); //Increase nanosecond randomness on school Macs. xD
 	clock_gettime(CLOCK_REALTIME, &tonti);
 	srand(tonti.tv_nsec);
 	base_class = rand() % 3;
