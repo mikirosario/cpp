@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 02:27:47 by miki              #+#    #+#             */
-/*   Updated: 2021/10/24 04:00:10 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/24 04:12:33 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,49 @@ int	main(void)
 	<< " ";
 	for (size_t i = 0; i < empty_array.size(); ++i)
 		OUT << empty_array[i];
+	OUT << NL << LINE_SEP << NL
+
+	<< NL << "OUT OF BOUNDS ACCESS TESTS" << NL
+	<< LINE_SEP << NL
+	<< "Empty Array Access Attempt Tests: " << NL
+	<< " ";
+	Array<int> empty1;
+	Array<char> empty2(0);
+	try {
+		empty1[0] = 1;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what();
+	}
+	OUT << NL
+	<< " ";
+	try {
+		empty2[0] = 1;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what();
+	}
+	OUT << NL
+	<< "Existing Array Out of Bounds Access Attempt Tests: " << NL
+	<< " ";
+	try {
+		OUT << my_str[13];
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what();
+	}
+	OUT << NL
+	<< " ";
+	try {
+		OUT << my_array[-1];
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what();
+	}
 	OUT << NL << LINE_SEP << NL;
 	return (0);
 }
