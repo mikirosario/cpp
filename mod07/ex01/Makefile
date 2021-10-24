@@ -6,11 +6,11 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/23 20:29:29 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/24 18:31:54 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = template
+NAME = iter
 
 SRCDIR = .
 
