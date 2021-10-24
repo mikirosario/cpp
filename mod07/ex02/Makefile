@@ -1,0 +1,57 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: miki <miki@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
+#    Updated: 2021/10/24 03:37:50 by miki             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = array
+
+SRCDIR = .
+
+GRN = \e[1;32m
+RED = \e[1;31m
+YEL = \e[1;33m
+DEL = \e[2K\r
+RST = \e[0m
+
+CXX = clang++
+
+SRCFILES = $(SRCDIR)/main.cpp
+
+MYSRC = $(SRCDIR)/my_main.cpp
+
+OBJS = $(SRCFILES:.cpp=.o)
+
+MYOBJS = $(MYSRC:.cpp=.o)
+
+INCLUDES = -I $(SRCDIR)
+
+CXXFLAGS = -Wall -Werror -Wextra -g
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $(OBJS)
+
+my_main: $(MYOBJS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(NAME) $(MYOBJS)
+
+clean:
+	@printf "$(YEL)Deleting object files...$(RST)"
+	@rm $(OBJS) $(MYOBJS) 2>/dev/null || true
+	@printf "$(DEL)$(GRN)Deleted object files\n$(RST)"
+
+fclean: clean
+	@printf "$(YEL)Deleting program...$(RST)"
+	@rm $(NAME) 2>/dev/null || true
+	@printf "$(DEL)$(GRN)Deleted program\n$(RST)"
+
+re: fclean all
+
+.PHONY: all clean fclean re $(NAME)
