@@ -6,11 +6,11 @@
 #    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/25 01:35:45 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/25 03:50:09 by mrosario         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = easyfind
+NAME = span
 
 SRCDIR = .
 
@@ -22,7 +22,7 @@ RST = \e[0m
 
 CXX = clang++
 
-SRCFILES = $(SRCDIR)/main.cpp
+SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/span.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
