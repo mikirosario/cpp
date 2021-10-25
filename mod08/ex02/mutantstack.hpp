@@ -6,7 +6,7 @@
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:12:52 by miki              #+#    #+#             */
-/*   Updated: 2021/10/25 20:28:27 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/25 20:30:30 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,26 @@ class MutantStack : public std::stack<T,ContType>
 		{}
 		~MutantStack(void)
 		{}
-		MutantStack &	operator=(MutantStack const & src)
+		MutantStack &						operator=(MutantStack const & src)
 		{
 			this->c = src.c;
 			return (*this);
 		}
-		typedef typename ContType::iterator iterator;
-		typedef typename ContType::const_iterator const_iterator;
-		typename ContType::iterator	begin(void)
+		typedef typename ContType::iterator			iterator;
+		typedef typename ContType::const_iterator	const_iterator;
+		typename ContType::iterator			begin(void)
 		{
 			return (this->c.begin());
 		}
-		typename ContType::iterator	end(void)
+		typename ContType::iterator			end(void)
 		{
 			return (this->c.end());
 		}
-		typename ContType::iterator	rbegin(void)
+		typename ContType::iterator			rbegin(void)
 		{
 			return (this->c.rbegin());
 		}
-		typename ContType::iterator	rend(void)
+		typename ContType::iterator			rend(void)
 		{
 			return (this->c.rend());
 		}
