@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 01:38:53 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/25 05:34:12 by mrosario         ###   ########.fr       */
+/*   Updated: 2021/10/25 09:59:01 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ class Span
 		~Span(void);
 		Span &			operator=(Span const & src);
 		void			addNumber(int const & n) throw(Span::SpanFullException);
+		void			addNumber(std::vector<int>::const_iterator const & begin, std::vector<int>::const_iterator const & end) throw(Span::SpanFullException);
+		void			randomFill(void);
 		unsigned int	shortestSpan(void) const throw(Span::NoSpanException);
 		unsigned int	longestSpan(void) const throw(Span::NoSpanException);
+		void			toFile(std::string const & filename) const;
 };
 
 #endif

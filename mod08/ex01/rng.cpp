@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   rng.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 03:44:58 by mrosario          #+#    #+#             */
-/*   Updated: 2021/10/25 10:23:27 by miki             ###   ########.fr       */
+/*   Created: 2021/10/25 08:29:59 by miki              #+#    #+#             */
+/*   Updated: 2021/10/25 10:23:04 by miki             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "span.hpp"
 #include "rng.hpp"
+#include <time.h>
+#include <cstdlib>
+#include <iostream>
 
-int	main(void)
+rng	rng::singleton;
+
+int	rng::negative_offset = MOD / 2;
+
+rng::rng(void)
 {
-	Span span(10);
+	struct timespec tp;
+	clock_gettime(CLOCK_REALTIME, &tp);
+	srand(tp.tv_nsec);
+}
+rng::~rng(void)
+{}
 
-	span.randomFill();
-
-	try
-	{
-		span.addNumber(2);
-	}
-	catch (std::exception & e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << span.longestSpan() << std::endl;
-	std::cout << span.shortestSpan() << std::endl;
-	span.toFile("out");
-	return (0);
+int	rng::randomInt(void)
+{
+	return ((rand() % MOD) - negative_offset);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+         #
+#    By: miki <miki@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 17:03:45 by mrosario          #+#    #+#              #
-#    Updated: 2021/10/25 03:50:09 by mrosario         ###   ########.fr        #
+#    Updated: 2021/10/25 10:24:38 by miki             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RST = \e[0m
 
 CXX = clang++
 
-SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/span.cpp
+SRCFILES = $(SRCDIR)/main.cpp $(SRCDIR)/span.cpp $(SRCDIR)/rng.cpp
 
 OBJS = $(SRCFILES:.cpp=.o)
 
@@ -42,7 +42,7 @@ clean:
 
 fclean: clean
 	@printf "$(YEL)Deleting program...$(RST)"
-	@rm $(NAME) 2>/dev/null || true
+	@rm $(NAME) *.SPAN 2>/dev/null || true
 	@printf "$(DEL)$(GRN)Deleted program\n$(RST)"
 
 re: fclean all
