@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mutantstack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miki <miki@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrosario <mrosario@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:12:52 by miki              #+#    #+#             */
-/*   Updated: 2021/10/25 20:30:30 by miki             ###   ########.fr       */
+/*   Updated: 2021/10/26 07:05:09 by mrosario         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <algorithm>
 
 //default container type is double-ended queue
-template<typename T, typename ContType = std::deque<T>>
+template< typename T, typename ContType = std::deque<T> >
 class MutantStack : public std::stack<T,ContType>
 {
 	private:
